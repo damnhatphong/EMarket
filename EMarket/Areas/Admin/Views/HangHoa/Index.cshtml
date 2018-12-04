@@ -1,0 +1,96 @@
+﻿@model PaginatedList<EMarket.Areas.Admin.Models.HangHoa>
+
+@{
+    ViewData["Title"] = "Hàng Hóa";
+}
+
+<h2>HÀNG HÓA</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <h5 class="card-header">Danh Sách Hàng Hóa</h5>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model[0].TenHangHoa)
+                            </th>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model[0].Gia)
+                            </th>
+                            <th scope="col" style="text-align:center">
+                                @Html.DisplayNameFor(model => model[0].Hinh)
+                            </th>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model[0].MoTa)
+                            </th>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model[0].Loai)
+                            </th>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model[0].NhaCungCap)
+                            </th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenHangHoa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gia)
+                                </td>
+                                <td>
+                                    <img height="auto" width="150" src="~/img/@Html.DisplayFor(modelItem => item.Hinh)" />
+                                    @Html.DisplayFor(modelItem => item.Hinh)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MoTa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Loai.TenLoai)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NhaCungCap.TenNhaCungCap)
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.HangHoaId">Edit</a>
+                                    <br />
+                                    <br />
+                                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.HangHoaId">Details</a>
+                                    <br />
+                                    <br />
+                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.HangHoaId">Delete</a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-page="@(Model.PageIndex - 1)"
+   class="btn btn-dark @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-page="@(Model.PageIndex + 1)"
+   class="btn btn-dark @nextDisabled">
+    Next
+</a>
+
+<a class="btn btn-success float-right" asp-action="Create">Create New</a>

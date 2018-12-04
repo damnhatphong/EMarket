@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using EMarket.Areas.Admin.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EMarket
 {
@@ -30,8 +32,10 @@ namespace EMarket
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
+            services.AddDbContext<EMarketContext>(options=> {
+                options.UseSqlServer(Configuration.GetConnectionString("EMarket"));
+            });
+            services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -47,16 +51,22 @@ namespace EMarket
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                name: "areas",
+                template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapAreaRoute(
                     name: "default",
+                    areaName:"Admin",
                     template: "{controller=Home}/{action=Index}/{id?}");
+               
             });
         }
     }

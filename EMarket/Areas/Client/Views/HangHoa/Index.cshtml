@@ -1,0 +1,85 @@
+﻿@model PaginatedList<EMarket.Areas.Admin.Models.HangHoa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="store" class="col-md-9">
+    <h2>Hàng Hóa</h2>
+    <vc:danh-sach-n-c-c>
+    </vc:danh-sach-n-c-c>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Tên Hàng Hóa
+                </th>
+                <th>
+                    Giá
+                </th>
+                <th>
+                    Hình
+                </th>
+                <th>
+                    Mô Tả
+                </th>
+                <th>
+                    Loại
+                </th>
+                <th>
+                    Nhà Cung Cấp
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenHangHoa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hinh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MoTa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Loai.TenLoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhaCungCap.TenNhaCungCap)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.HangHoaId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.HangHoaId">Details</a> |
+                        <a class = "btn btn-danger" asp-action="Delete" asp-route-id="@item.HangHoaId">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageIndex - 1)"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageIndex + 1)"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+</div>
