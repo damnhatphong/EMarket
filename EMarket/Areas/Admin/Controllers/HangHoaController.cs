@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EMarket.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace EMarket.Areas.Admin.Controllers
 {
@@ -96,8 +98,9 @@ namespace EMarket.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HangHoaId,TenHangHoa,NhaCungCapId,LoaiId,Gia,Hinh,MoTa")] HangHoa hangHoa)
+        public async Task<IActionResult> Edit(int id, [Bind("HangHoaId,TenHangHoa,NhaCungCapId,LoaiId,Gia,MoTa")] HangHoa hangHoa,IFormFile Hinh)
         {
+            
             if (id != hangHoa.HangHoaId)
             {
                 return NotFound();
@@ -105,8 +108,18 @@ namespace EMarket.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 try
                 {
+                    if (Hinh != null)
+                    {
+                        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", Hinh.FileName);
+                        using (var file = new FileStream(path, FileMode.Create))
+                        {
+                            Hinh.CopyTo(file);
+                        }
+                        hangHoa.Hinh = Hinh.FileName;
+                    }
                     _context.Update(hangHoa);
                     await _context.SaveChangesAsync();
                 }

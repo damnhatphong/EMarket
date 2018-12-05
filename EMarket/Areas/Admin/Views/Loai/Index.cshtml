@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EMarket.Areas.Admin.Models.Loai>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Thể Loại</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenLoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenLoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.LoaiId">Sửa</a>
+                <br />
+                <br />
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.LoaiId">Chi Tiết</a>
+                <br />
+                <br />
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.LoaiId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<a class="btn btn-success float-right" asp-action="Create">Thêm</a>

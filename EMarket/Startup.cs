@@ -65,7 +65,7 @@ namespace EMarket
                 routes.MapAreaRoute(
                     name: "default",
                     areaName:"Admin",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=HangHoa}/{action=Index}/{id?}");
                
             });
         }

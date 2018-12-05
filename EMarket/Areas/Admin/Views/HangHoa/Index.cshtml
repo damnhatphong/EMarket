@@ -1,7 +1,7 @@
 ﻿@model PaginatedList<EMarket.Areas.Admin.Models.HangHoa>
 
 @{
-    ViewData["Title"] = "Hàng Hóa";
+    ViewData["Title"] = "Index";
 }
 
 <h2>HÀNG HÓA</h2>
@@ -49,7 +49,6 @@
                                 </td>
                                 <td>
                                     <img height="auto" width="150" src="~/img/@Html.DisplayFor(modelItem => item.Hinh)" />
-                                    @Html.DisplayFor(modelItem => item.Hinh)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.MoTa)
@@ -61,13 +60,13 @@
                                     @Html.DisplayFor(modelItem => item.NhaCungCap.TenNhaCungCap)
                                 </td>
                                 <td>
-                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.HangHoaId">Edit</a>
+                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.HangHoaId">Sửa</a>
                                     <br />
                                     <br />
-                                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.HangHoaId">Details</a>
+                                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.HangHoaId">Chi Tiết</a>
                                     <br />
                                     <br />
-                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.HangHoaId">Delete</a>
+                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.HangHoaId">Xóa</a>
                                 </td>
                             </tr>
 
@@ -85,12 +84,12 @@
 <a asp-action="Index"
    asp-route-page="@(Model.PageIndex - 1)"
    class="btn btn-dark @prevDisabled">
-    Previous
+    Trước
 </a>
 <a asp-action="Index"
    asp-route-page="@(Model.PageIndex + 1)"
    class="btn btn-dark @nextDisabled">
-    Next
+   Sau
 </a>
 
-<a class="btn btn-success float-right" asp-action="Create">Create New</a>
+<a class="btn btn-success float-right" asp-action="Create">Thêm</a>
