@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Shared\Components\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 

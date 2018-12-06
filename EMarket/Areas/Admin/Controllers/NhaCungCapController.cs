@@ -10,23 +10,22 @@ using EMarket.Areas.Admin.Models;
 namespace EMarket.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class LoaiController : Controller
+    public class NhaCungCapController : Controller
     {
         private readonly EMarketContext _context;
 
-        public LoaiController(EMarketContext context)
+        public NhaCungCapController(EMarketContext context)
         {
             _context = context;
         }
 
-        // GET: Admin/Loai
-        public async Task<IActionResult> Index(int? id)
+        // GET: Admin/NhaCungCap
+        public async Task<IActionResult> Index()
         {
-            var result = await _context.Loai.ToListAsync();
-            return View(result);
+            return View(await _context.NhaCungCap.ToListAsync());
         }
 
-        // GET: Admin/Loai/Details/5
+        // GET: Admin/NhaCungCap/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +33,39 @@ namespace EMarket.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var loai = await _context.Loai
-                .FirstOrDefaultAsync(m => m.LoaiId == id);
-            if (loai == null)
+            var nhaCungCap = await _context.NhaCungCap
+                .FirstOrDefaultAsync(m => m.NhaCungCapId == id);
+            if (nhaCungCap == null)
             {
                 return NotFound();
             }
 
-            return View(loai);
+            return View(nhaCungCap);
         }
 
-        // GET: Admin/Loai/Create
+        // GET: Admin/NhaCungCap/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Loai/Create
+        // POST: Admin/NhaCungCap/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LoaiId,TenLoai,MoTa")] Loai loai)
+        public async Task<IActionResult> Create([Bind("NhaCungCapId,TenNhaCungCap,MoTa")] NhaCungCap nhaCungCap)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(loai);
+                _context.Add(nhaCungCap);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(loai);
+            return View(nhaCungCap);
         }
 
-        // GET: Admin/Loai/Edit/5
+        // GET: Admin/NhaCungCap/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +73,22 @@ namespace EMarket.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var loai = await _context.Loai.FindAsync(id);
-            if (loai == null)
+            var nhaCungCap = await _context.NhaCungCap.FindAsync(id);
+            if (nhaCungCap == null)
             {
                 return NotFound();
             }
-            return View(loai);
+            return View(nhaCungCap);
         }
 
-        // POST: Admin/Loai/Edit/5
+        // POST: Admin/NhaCungCap/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("LoaiId,TenLoai,MoTa")] Loai loai)
+        public async Task<IActionResult> Edit(int id, [Bind("NhaCungCapId,TenNhaCungCap,MoTa")] NhaCungCap nhaCungCap)
         {
-            if (id != loai.LoaiId)
+            if (id != nhaCungCap.NhaCungCapId)
             {
                 return NotFound();
             }
@@ -98,12 +97,12 @@ namespace EMarket.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(loai);
+                    _context.Update(nhaCungCap);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LoaiExists(loai.LoaiId))
+                    if (!NhaCungCapExists(nhaCungCap.NhaCungCapId))
                     {
                         return NotFound();
                     }
@@ -114,10 +113,10 @@ namespace EMarket.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(loai);
+            return View(nhaCungCap);
         }
 
-        // GET: Admin/Loai/Delete/5
+        // GET: Admin/NhaCungCap/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +124,30 @@ namespace EMarket.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var loai = await _context.Loai
-                .FirstOrDefaultAsync(m => m.LoaiId == id);
-            if (loai == null)
+            var nhaCungCap = await _context.NhaCungCap
+                .FirstOrDefaultAsync(m => m.NhaCungCapId == id);
+            if (nhaCungCap == null)
             {
                 return NotFound();
             }
 
-            return View(loai);
+            return View(nhaCungCap);
         }
 
-        // POST: Admin/Loai/Delete/5
+        // POST: Admin/NhaCungCap/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var loai = await _context.Loai.FindAsync(id);
-            _context.Loai.Remove(loai);
+            var nhaCungCap = await _context.NhaCungCap.FindAsync(id);
+            _context.NhaCungCap.Remove(nhaCungCap);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LoaiExists(int id)
+        private bool NhaCungCapExists(int id)
         {
-            return _context.Loai.Any(e => e.LoaiId == id);
+            return _context.NhaCungCap.Any(e => e.NhaCungCapId == id);
         }
     }
 }

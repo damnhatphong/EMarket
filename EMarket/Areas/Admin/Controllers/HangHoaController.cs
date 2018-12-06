@@ -22,9 +22,19 @@ namespace EMarket.Areas.Admin.Controllers
         }
 
         // GET: Admin/HangHoas
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page,string searchstring,int? LoaiId)
         {
+            ViewData["SearchString"] = searchstring;
+            ViewData["LoaiId"] = LoaiId;
             var eMarketContext = _context.HangHoa.Include(h => h.Loai).Include(h => h.NhaCungCap).OrderBy(h=>h.HangHoaId);
+            if (!String.IsNullOrEmpty(searchstring))
+            {
+                eMarketContext = eMarketContext.Where(s => s.TenHangHoa.Contains(searchstring) || Convert.ToString(s.HangHoaId) == searchstring).OrderBy(h=>h.HangHoaId);
+            }
+            if (LoaiId != null)
+            {
+                eMarketContext = eMarketContext.Where(p => p.LoaiId == LoaiId).OrderBy(p => p.HangHoaId);
+            }
             int pageSize = 5;
             return View(await PaginatedList<HangHoa>.CreateAsync(eMarketContext.AsNoTracking(), page ?? 1, pageSize));
         }

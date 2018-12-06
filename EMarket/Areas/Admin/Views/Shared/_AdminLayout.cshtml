@@ -32,12 +32,7 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
-                        <li class="nav-item">
-                            <div id="custom-search" class="top-search-bar">
-                                <input class="form-control" type="text" placeholder="Tìm Kiếm..">
-                            </div>
-                        </li>
-                        
+
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
@@ -76,7 +71,7 @@
                                 <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Hàng Hóa <span class="badge badge-success">6</span></a>
                                 <div id="submenu-1" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
-                                        
+
                                         <li class="nav-item">
                                             <a class="nav-link" asp-controller="HangHoa" asp-action="Index">Danh Sách Hàng Hóa</a>
                                         </li>
@@ -84,6 +79,12 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="ecommerce-product.html">Kho Hàng</a>
                                         </li>
+                                        <a class="nav-link" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">Phân Loại</a>
+                                        <div id="submenu-1-2" class="collapse submenu" style="">
+                                            <ul class="nav flex-column">
+                                                @await Component.InvokeAsync("PhanLoaiAdmin")
+                                            </ul>
+                                        </div>
                                     </ul>
                                 </div>
                             </li>
@@ -92,12 +93,8 @@
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" asp-controller="Loai" asp-action="Index">Danh Sách Loại Hàng</a>
+                                            <a class="nav-link" asp-controller="Loai" asp-action="Index" asp-route-id="">Danh Sách Loại Hàng</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/general.html">General</a>
-                                        </li>
-                                        
                                     </ul>
                                 </div>
                             </li>
@@ -106,22 +103,7 @@
                                 <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-c3.html">C3 Charts</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-chartist.html">Chartist Charts</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-charts.html">Chart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-morris.html">Morris</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-sparkline.html">Sparkline</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-gauge.html">Guage</a>
+                                            <a class="nav-link" asp-controller="NhaCungCap" asp-action="Index">Danh Sách Nhà Cung Cấp</a>
                                         </li>
                                     </ul>
                                 </div>
