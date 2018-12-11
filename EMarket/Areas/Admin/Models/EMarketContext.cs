@@ -95,19 +95,12 @@ namespace EMarket.Areas.Admin.Models
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ThongTinTaiKhoanId).HasColumnName("ThongTinTaiKhoanID");
-
                 entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.ThongTinTaiKhoan)
-                    .WithMany(p => p.TaiKhoan)
-                    .HasForeignKey(d => d.ThongTinTaiKhoanId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TaiKhoan_ThongTinTaiKhoan");
-            });
+              });
 
             modelBuilder.Entity<ThongTinTaiKhoan>(entity =>
             {
@@ -125,6 +118,15 @@ namespace EMarket.Areas.Admin.Models
                     .HasColumnName("SDT")
                     .HasMaxLength(20)
                     .IsUnicode(false);
+
+                entity.Property(e => e.TaiKhoanId).HasColumnName("TaiKhoanId");
+
+                entity.HasOne(d => d.TaiKhoan)
+                    .WithMany(p => p.ThongTinTaiKhoan)
+                    .HasForeignKey(d => d.TaiKhoanId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ThongTinTaiKhoan_TaiKhoan");
+
             });
 
             modelBuilder.Entity<TopSelling>(entity =>

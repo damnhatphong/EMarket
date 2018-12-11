@@ -3,83 +3,58 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <div id="store" class="col-md-9">
-    <h2>Hàng Hóa</h2>
-    <vc:danh-sach-n-c-c>
-    </vc:danh-sach-n-c-c>
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Tên Hàng Hóa
-                </th>
-                <th>
-                    Giá
-                </th>
-                <th>
-                    Hình
-                </th>
-                <th>
-                    Mô Tả
-                </th>
-                <th>
-                    Loại
-                </th>
-                <th>
-                    Nhà Cung Cấp
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TenHangHoa)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gia)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Hinh)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MoTa)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Loai.TenLoai)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NhaCungCap.TenNhaCungCap)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.HangHoaId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.HangHoaId">Details</a> |
-                        <a class = "btn btn-danger" asp-action="Delete" asp-route-id="@item.HangHoaId">Delete</a>
-                    </td>
-                </tr>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-xs-6">
+                <div class="product">
+                    <div class="product-img">
+                        <img src="~/img/@item.Hinh" alt="" height="262">
+                        <div class="product-label">
+                            <span class="new">@item.NhaCungCap.TenNhaCungCap</span>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <p class="product-category">@item.Loai.TenLoai</p>
+                        <h3 class="product-name"><a asp-action="Details" asp-route-id="@item.HangHoaId">@item.TenHangHoa</a></h3>
+                        <h4 class="product-price">@item.Gia$</h4>                        
+                        <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+
+                    </div>
+                    <div class="add-to-cart">
+                        <a asp-controller="GioHang" asp-action="Them" asp-route-id="@item.HangHoaId" asp-route-soLuong="1" class="btn add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="col-md-12">
+            @{
+                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
             }
-
-        </tbody>
-    </table>
-
-    @{
-        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-    }
-    <a asp-action="Index"
-       asp-route-page="@(Model.PageIndex - 1)"
-       class="btn btn-default @prevDisabled">
-        Previous
-    </a>
-    <a asp-action="Index"
-       asp-route-page="@(Model.PageIndex + 1)"
-       class="btn btn-default @nextDisabled">
-        Next
-    </a>
+            <a asp-action="Index"
+               asp-route-page="@(Model.PageIndex - 1)"
+               asp-route-loai="@ViewData["LoaiID"]"
+               asp-route-nhacc="@ViewData["NhaCungCapID"]"
+               class="btn btn-default @prevDisabled">
+                Previous
+            </a>
+            <a asp-action="Index"
+               asp-route-page="@(Model.PageIndex + 1)"
+               asp-route-loai="@ViewData["LoaiID"]"
+               asp-route-nhacc="@ViewData["NhaCungCapID"]"
+               class="btn btn-default @nextDisabled">
+                Next
+            </a>
+        </div>
+    </div>
+ 
 </div>

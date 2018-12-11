@@ -24,7 +24,7 @@ namespace EMarket.ViewComponents
         public Task<List<HangHoa>> GetTop3Async()
         {
             //var list = db.TopSelling.Take(3).ToListAsync();
-            var list = db.TopSelling.Join(db.HangHoa, top => top.HangHoaId, inner => inner.HangHoaId, (top, inner) => inner).Take(3).ToListAsync();
+            var list = db.TopSelling.Join(db.HangHoa, top => top.HangHoaId, inner => inner.HangHoaId, (top, inner) => inner).Take(3).ToListAsync();         
             return list;
         }
     }

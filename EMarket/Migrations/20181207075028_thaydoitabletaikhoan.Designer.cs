@@ -4,14 +4,16 @@ using EMarket.Areas.Admin.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EMarket.Migrations
 {
     [DbContext(typeof(EMarketContext))]
-    partial class EMarketContextModelSnapshot : ModelSnapshot
+    [Migration("20181207075028_thaydoitabletaikhoan")]
+    partial class thaydoitabletaikhoan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,8 +116,6 @@ namespace EMarket.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("TaiKhoanID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email");
 
                     b.Property<bool>("LoaiTaiKhoan");
 

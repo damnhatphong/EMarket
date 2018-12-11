@@ -1,21 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EMarket.Areas.Admin.Models
 {
     public partial class ThongTinTaiKhoan
     {
-        public ThongTinTaiKhoan()
-        {
-            TaiKhoan = new HashSet<TaiKhoan>();
-        }
-
+       
+        [Display(Name ="Mã Thông Tin Tài Khoản")]
+        [Required]
         public int ThongTinTaiKhoanId { get; set; }
+        [Display(Name ="Họ Và Tên")]
+        [Required]
         public string HoVaTen { get; set; }
+        [Display(Name = "Ngày Sinh")]
+        [Required]
         public DateTime? NgaySinh { get; set; }
+        [Display(Name = "Số Điện Thoại")]
+        [Required]
         public string Sdt { get; set; }
+        [Display(Name = "Địa Chỉ")]
+        [Required]
         public string DiaChi { get; set; }
 
-        public ICollection<TaiKhoan> TaiKhoan { get; set; }
+        public int TaiKhoanId { get; set; }
+
+        public TaiKhoan TaiKhoan { get; set; }
+        
     }
 }

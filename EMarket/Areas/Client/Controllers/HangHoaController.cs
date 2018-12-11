@@ -21,13 +21,19 @@ namespace EMarket.Areas.Client.Controllers
         }
 
         // GET: HangHoa
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, int? loai, int? nhacc)
         {
             int pageSize = 3;
             if (page == null) page = 1;
-            var eMarketContext = _context.HangHoa.Include(h => h.Loai).Include(h => h.NhaCungCap);
-            return View(await PaginatedList<HangHoa>.CreateAsync(eMarketContext,page ?? 1,pageSize));
+            var eMarketContext = _context.HangHoa.Include(p=>p.Loai).Include(p=>p.NhaCungCap).OrderBy(p=>p.HangHoaId);
+            if(loai != null) eMarketContext = eMarketContext.Where(p => p.LoaiId == loai).OrderBy(p => p.HangHoaId);
+            if (nhacc != null) eMarketContext = eMarketContext.Where(p => p.NhaCungCapId == nhacc).OrderBy(p => p.HangHoaId);
+            ViewData["LoaiID"] = loai;
+            ViewData["NhaCungCapID"] = nhacc;
+             return View(await PaginatedList<HangHoa>.CreateAsync(eMarketContext, page ?? 1, pageSize));
+            
         }
+
 
         // GET: HangHoa/Details/5
         public async Task<IActionResult> Details(int? id)
