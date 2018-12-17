@@ -6,31 +6,31 @@ namespace EMarket.Areas.Admin.Models
 {
     public partial class TaiKhoan
     {
-        public TaiKhoan() {
+        public TaiKhoan()
+        {
             ThongTinTaiKhoan = new HashSet<ThongTinTaiKhoan>();
         }
-        [Display(Name="Mã Tài Khoản")]
+
+
+        [Display(Name = "Mã Tài Khoản")]
+        [Required]
         public int TaiKhoanId { get; set; }
-       
-        [Display(Name ="Tên Tài Khoản")]
+        [Display(Name = "Tài khoản")]
         [Required]
         public string UserName { get; set; }
-
         [Display(Name = "Mật Khẩu")]
         [Required]
         public string Password { get; set; }
-
         [Display(Name = "Ngày Đăng Ký")]
-        public DateTime NgayDk { get; set; }
-
-        [Display(Name = "Email")]
-        [EmailAddress]
         [Required]
-        public string Email { get; set; }
-
-        [Display(Name ="Là Khách Hàngs")]
+        public DateTime NgayDk { get; set; }
+        [Display(Name = "Tài khoản khách hàng")]
         [Required]
         public bool LoaiTaiKhoan { get; set; }
+        [Display(Name = "Email")]
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
 
         public ICollection<ThongTinTaiKhoan> ThongTinTaiKhoan { get; set; }
     }

@@ -33,15 +33,18 @@
                 <p>@Model.MoTa</p>
        
                 <div class="add-to-cart">
-                    <div class="qty-label">
-                        Qty
-                        <div class="input-number">
-                            <input type="number">
-                            <span class="qty-up">+</span>
-                            <span class="qty-down">-</span>
+                    <form asp-controller="GioHang" asp-action="Them">
+                        <div class="qty-label">
+                            Qty
+                            <div class="input-number">
+                                <input name="soLuong" type="number" required>
+                                <input type="hidden" name="id" value="@Model.HangHoaId" />
+                                <span class="qty-up">+</span>
+                                <span class="qty-down">-</span>
+                            </div>
                         </div>
-                    </div>
-                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                    </form>
                 </div>
 
                 <ul class="product-links">
@@ -137,4 +140,3 @@
         </div>
         <!-- /product tab -->
     </div>
-<a asp-action="Index">Back to List</a>

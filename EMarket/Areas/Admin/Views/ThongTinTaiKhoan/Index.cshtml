@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Thông tin tài khoản</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.DiaChi)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ThongTinTaiKhoanId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ThongTinTaiKhoanId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ThongTinTaiKhoanId">Delete</a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ThongTinTaiKhoanId">Edit</a> |
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.ThongTinTaiKhoanId">Details</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ThongTinTaiKhoanId">Delete</a>
             </td>
         </tr>
 }

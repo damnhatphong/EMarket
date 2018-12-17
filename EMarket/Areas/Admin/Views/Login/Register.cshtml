@@ -46,8 +46,9 @@
                 <h3 class="mb-1">Đăng Ký</h3>
                 <p>Xin Vui Lòng Nhập Dữ Liệu:</p>
             </div>
-            <h5 class="text-danger">@ViewData["RegisterError"]</h5>
+            
             <div class="card-body">
+                <h5 class="text-danger">@ViewData["RegisterError"]</h5>
                 <div class="form-group">
                     <label asp-for="UserName" class="control-label"></label>
                     <input class="form-control form-control-lg" type="text" asp-for="UserName" placeholder="Username" autocomplete="off">
@@ -70,14 +71,6 @@
                     <input class="btn btn-block btn-primary" type="submit" value="Đăng Ký">
                 </div>
 
-                <div class="form-group row pt-0">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
-                        <button class="btn btn-block btn-social btn-facebook " type="button">Facebook</button>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <button class="btn  btn-block btn-social btn-twitter" type="button">Twitter</button>
-                    </div>
-                </div>
             </div>
             <div class="card-footer bg-white">
                 <p>Đã có tài khoản? <a asp-controller="Login" asp-action="Index" class="text-secondary">Đăng nhập tại đây.</a></p>

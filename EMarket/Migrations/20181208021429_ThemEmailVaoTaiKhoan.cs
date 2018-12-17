@@ -6,6 +6,7 @@ namespace EMarket.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
             migrationBuilder.AddColumn<string>(
                 name: "Email",
                 table: "TaiKhoan",

@@ -59,8 +59,13 @@ namespace EMarket
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                name: "areas",
-                template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    name: "areas",
+                    template: "{area:exists}/{controller=HangHoa}/{action=Index}/{id?}");
+
+                /*routes.MapAreaRoute(
+                    name:"Admin",
+                    areaName:"Admin",
+                    template"{controller=HangHoa}/{action=Index}/{id?}");*/
 
                 routes.MapAreaRoute(
                     name: "default",

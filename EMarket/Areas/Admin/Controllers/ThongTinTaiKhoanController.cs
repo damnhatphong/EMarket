@@ -87,7 +87,7 @@ namespace EMarket.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["TaiKhoanId"] = new SelectList(_context.TaiKhoan, "TaiKhoanId", "Password", thongTinTaiKhoan.TaiKhoanId);
+            ViewData["TaiKhoanId"] = _context.ThongTinTaiKhoan.Where(p => p.ThongTinTaiKhoanId == id).FirstOrDefault().TaiKhoanId;
             return View(thongTinTaiKhoan);
         }
 

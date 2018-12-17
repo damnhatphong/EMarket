@@ -19,6 +19,29 @@ namespace EMarket.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("EMarket.Areas.Admin.Models.ChiTietHoaDon", b =>
+                {
+                    b.Property<int>("ChiTietHoaDonId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("HangHoaId");
+
+                    b.Property<int>("HoaDonId");
+
+                    b.Property<int>("SoLuong");
+
+                    b.Property<double>("TongTien");
+
+                    b.HasKey("ChiTietHoaDonId");
+
+                    b.HasIndex("HangHoaId");
+
+                    b.HasIndex("HoaDonId");
+
+                    b.ToTable("ChiTietHoaDon");
+                });
+
             modelBuilder.Entity("EMarket.Areas.Admin.Models.HangHoa", b =>
                 {
                     b.Property<int>("HangHoaId")
@@ -29,7 +52,6 @@ namespace EMarket.Migrations
                     b.Property<double>("Gia");
 
                     b.Property<string>("Hinh")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
@@ -54,19 +76,49 @@ namespace EMarket.Migrations
                     b.ToTable("HangHoa");
                 });
 
-            modelBuilder.Entity("EMarket.Areas.Admin.Models.KhoHang", b =>
+            modelBuilder.Entity("EMarket.Areas.Admin.Models.HoaDon", b =>
                 {
-                    b.Property<int>("KhoHangID")
+                    b.Property<int>("HoaDonId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("HangHoaID");
+                    b.Property<string>("DiaChi")
+                        .IsRequired();
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<DateTime>("NgayLapHoaDon");
+
+                    b.Property<string>("Sdt")
+                        .IsRequired()
+                        .HasColumnName("SDT");
+
+                    b.Property<string>("TenKhachHang")
+                        .IsRequired();
+
+                    b.Property<bool>("TinhTrang");
+
+                    b.HasKey("HoaDonId");
+
+                    b.ToTable("HoaDon");
+                });
+
+            modelBuilder.Entity("EMarket.Areas.Admin.Models.KhoHang", b =>
+                {
+                    b.Property<int>("KhoHangId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("KhoHangID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("HangHoaId")
+                        .HasColumnName("HangHoaID");
 
                     b.Property<int>("SoLuong");
 
-                    b.HasKey("KhoHangID");
+                    b.HasKey("KhoHangId");
 
-                    b.HasIndex("HangHoaID");
+                    b.HasIndex("HangHoaId");
 
                     b.ToTable("KhoHang");
                 });
@@ -115,7 +167,8 @@ namespace EMarket.Migrations
                         .HasColumnName("TaiKhoanID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
                     b.Property<bool>("LoaiTaiKhoan");
 
@@ -153,8 +206,7 @@ namespace EMarket.Migrations
                         .IsRequired()
                         .HasMaxLength(200);
 
-                    b.Property<DateTime?>("NgaySinh")
-                        .IsRequired()
+                    b.Property<DateTime>("NgaySinh")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Sdt")
@@ -163,8 +215,7 @@ namespace EMarket.Migrations
                         .HasMaxLength(20)
                         .IsUnicode(false);
 
-                    b.Property<int>("TaiKhoanId")
-                        .HasColumnName("TaiKhoanId");
+                    b.Property<int>("TaiKhoanId");
 
                     b.HasKey("ThongTinTaiKhoanId");
 
@@ -185,13 +236,28 @@ namespace EMarket.Migrations
                     b.Property<int>("HangHoaId")
                         .HasColumnName("HangHoaID");
 
-                    b.Property<int>("SoLan");
+                    b.Property<int?>("SoLan")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0))");
 
                     b.HasKey("TopSellingId");
 
                     b.HasIndex("HangHoaId");
 
                     b.ToTable("TopSelling");
+                });
+
+            modelBuilder.Entity("EMarket.Areas.Admin.Models.ChiTietHoaDon", b =>
+                {
+                    b.HasOne("EMarket.Areas.Admin.Models.HangHoa", "HangHoa")
+                        .WithMany("ChiTietHoaDon")
+                        .HasForeignKey("HangHoaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EMarket.Areas.Admin.Models.HoaDon", "HoaDon")
+                        .WithMany("ChiTietHoaDon")
+                        .HasForeignKey("HoaDonId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EMarket.Areas.Admin.Models.HangHoa", b =>
@@ -209,9 +275,9 @@ namespace EMarket.Migrations
 
             modelBuilder.Entity("EMarket.Areas.Admin.Models.KhoHang", b =>
                 {
-                    b.HasOne("EMarket.Areas.Admin.Models.HangHoa")
+                    b.HasOne("EMarket.Areas.Admin.Models.HangHoa", "HangHoa")
                         .WithMany("KhoHang")
-                        .HasForeignKey("HangHoaID")
+                        .HasForeignKey("HangHoaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

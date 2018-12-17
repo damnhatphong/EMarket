@@ -21,7 +21,8 @@ namespace EMarket.ViewComponents
         {
             List<GioHang> list = GetGioHangAsync();
             if (list == null) { list = new List<GioHang>(); }
-            return Task.FromResult<IViewComponentResult>(View(list));
+            GioHangViewModel giohang = new GioHangViewModel() { GioHang = list };
+            return Task.FromResult<IViewComponentResult>(View(giohang));
         }
         private List<GioHang> GetGioHangAsync()
         {

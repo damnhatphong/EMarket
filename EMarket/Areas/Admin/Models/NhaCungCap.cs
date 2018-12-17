@@ -11,13 +11,17 @@ namespace EMarket.Areas.Admin.Models
             HangHoa = new HashSet<HangHoa>();
         }
 
-        [Display(Name ="Mã Nhà Cung Cấp")]
+
+        [Display(Name = "Mã nhà cung cấp")]
         [Required]
         public int NhaCungCapId { get; set; }
+
+        [Display(Name = "Tên nhà cung cấp")]
         [Required]
-        [Display(Name = "Tên Nhà Cung Cấp")]
         public string TenNhaCungCap { get; set; }
-        [Display(Name = "Mô Tả")]
+
+        [Display(Name = "Mô tả")]
+        [Required]
         public string MoTa { get; set; }
 
         public ICollection<HangHoa> HangHoa { get; set; }

@@ -62,7 +62,8 @@ namespace EMarket.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([Bind("UserName,Email,Password")] TaiKhoan register,string repassword )
         {
-           
+            var check = _context.TaiKhoan.Where(p => p.UserName == register.UserName).FirstOrDefault();
+            if (check != null) { ViewData["RegisterError"] = "Tài Khoản Đã Tồn Tại"; return View("Register"); }
             register.LoaiTaiKhoan = false;
             register.NgayDk = DateTime.Now;
 
