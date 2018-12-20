@@ -24,6 +24,7 @@ namespace EMarket.Areas.Admin.Models
         public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
         public virtual DbSet<ThongTinTaiKhoan> ThongTinTaiKhoan { get; set; }
         public virtual DbSet<TopSelling> TopSelling { get; set; }
+        public virtual DbSet<DanhGia> DanhGia { get; set; }
 
         /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,6 +37,11 @@ namespace EMarket.Areas.Admin.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DanhGia>(entity => 
+            {
+                entity.HasIndex(e => e.Id);
+                
+            });
             modelBuilder.Entity<ChiTietHoaDon>(entity =>
             {
                 entity.HasIndex(e => e.HangHoaId);

@@ -4,7 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-
+<div class="col-md-9">
+    <h3 style="color:red; width:100%;text-align:center;"> @TempData["loginError"]</h3>
+</div>    
     <div class="col-md-9"
         <!-- Product main img -->
         <div class="col-md-4">
@@ -112,10 +114,8 @@
                             <!-- Review Form -->
                             <div class="col-md-3">
                                 <div id="review-form">
-                                    <form class="review-form">
-                                        <input class="input" type="text" placeholder="Your Name">
-                                        <input class="input" type="email" placeholder="Your Email">
-                                        <textarea class="input" placeholder="Your Review"></textarea>
+                                    <form asp-controller="Rating" asp-action="AddNewRating" class="review-form">                                       
+                                        <textarea name="comment" style="width:600px;height:100px; resize:none;" class="input" placeholder="Your Review" ></textarea>
                                         <div class="input-rating">
                                             <span>Your Rating: </span>
                                             <div class="stars">
@@ -125,8 +125,9 @@
                                                 <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
                                                 <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
                                             </div>
+                                            <input type="hidden" name="id" value="@Model.HangHoaId" />
                                         </div>
-                                        <button class="primary-btn">Submit</button>
+                                        <button type="submit" class="primary-btn">Submit</button>
                                     </form>
                                 </div>
                             </div>

@@ -41,7 +41,7 @@
             <h5>Tổng Tiền: @total</h5>
         </div>
         <div class="cart-btns">
-            <form asp-controller="GioHang" asp-action="ThanhToan">
+            <form asp-controller="CheckOut" asp-action="Index">
                 <input type="hidden" name="danhsach" value="@JsonConvert.SerializeObject(Model.GioHang)" />
                 <button style="width:100%;color:white;background-color:black; padding-top:10px;padding-bottom:10px;" type="submit" href="#" id="submit">Đặt Hàng<i class="fa fa-arrow-circle-right"></i></button>
             </form>

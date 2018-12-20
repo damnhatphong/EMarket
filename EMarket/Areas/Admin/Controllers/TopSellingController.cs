@@ -22,7 +22,7 @@ namespace EMarket.Areas.Admin.Controllers
         // GET: Admin/TopSelling
         public async Task<IActionResult> Index()
         {
-            var eMarketContext = _context.TopSelling.Include(t => t.HangHoa).OrderBy(p=>p.HangHoaId);
+            var eMarketContext = _context.TopSelling.Include(t => t.HangHoa).OrderBy(p=>p.HangHoaId).Take(5);
             return View(await eMarketContext.ToListAsync());
         }
 

@@ -23,7 +23,7 @@ namespace EMarket.Areas.Client.Controllers
         // GET: HangHoa
         public async Task<IActionResult> Index(int? page, int? loai, int? nhacc,string pattern)
         {
-            int pageSize = 3;
+            int pageSize = 6;
             if (page == null) page = 1;
             var eMarketContext = _context.HangHoa.Include(p=>p.Loai).Include(p=>p.NhaCungCap).OrderBy(p=>p.HangHoaId);
             if(loai != null) eMarketContext = eMarketContext.Where(p => p.LoaiId == loai).OrderBy(p => p.HangHoaId);
@@ -39,6 +39,7 @@ namespace EMarket.Areas.Client.Controllers
         // GET: HangHoa/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            
             if (id == null)
             {
                 return NotFound();
@@ -86,6 +87,7 @@ namespace EMarket.Areas.Client.Controllers
         // GET: HangHoa/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+           
             if (id == null)
             {
                 return NotFound();

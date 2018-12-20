@@ -54,7 +54,9 @@
                     }
                     else
                     {
-                        <li><a asp-controller="Login" asp-action="Logout"><i class="fa fa-user-o"></i>@Context.Session.GetString("User") (Logout)</a></li>
+                        <li><a asp-controller="Login" asp-action="Logout"><i class="fa fa-sign-in"></i>@Context.Session.GetString("User") (Logout)</a></li>
+                        <li><a asp-controller="Login" asp-action="ChangeInfo"><i class="fa fa-user-o"></i>[ChangeInfo]</a></li>
+
                     }
 
                 </ul>
@@ -105,19 +107,8 @@
         </div>
         <!-- /MAIN HEADER -->
     </header>
+
     <!-- /HEADER -->
-    <!-- NAVIGATION -->
-    <nav id="navigation">
-        <!-- container -->
-        <div class="container">
-            <!-- responsive-nav -->
-            <!-- /responsive-nav -->
-        </div>
-        <!-- /container -->
-    </nav>
-    <!-- /NAVIGATION -->
-    <!-- BREADCRUMB -->
-    <!-- /BREADCRUMB -->
     <!-- SECTION -->
     <div class="section">
         <!-- container -->
@@ -155,7 +146,7 @@
                     <!-- /aside Widget -->
                 </div>
                 <!-- /ASIDE -->
-               
+
                 @RenderBody()
             </div>
             <!-- /row -->
@@ -164,6 +155,7 @@
     </div>
     <!-- /SECTION -->
     <!-- FOOTER -->
+    @await Component.InvokeAsync("NewArrivals")
     <footer id="footer">
         <!-- top footer -->
         <div class="section">
@@ -186,7 +178,7 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="footer">
                             <h3 class="footer-title">Categories</h3>
-                            <ul class="footer-links">                                
+                            <ul class="footer-links">
                                 <li><i class="fa fa-laptop"></i><a href="#">Laptops</a></li>
                                 <li><i class="fa fa-phone"></i><a href="#">Smartphones</a></li>
                                 <li><i class="fa fa-camera"></i><a href="#">Cameras</a></li>
@@ -200,16 +192,16 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="footer">
                             <h3 class="footer-title">About Me</h3>
-                            <ul class="footer-links">                                
-                                <li><i class="fa fa-facebook"></i><a href="#">FaceBook</a></li>
+                            <ul class="footer-links">
+                                <li><i class="fa fa-facebook"></i><a href="https://www.facebook.com/phong.nhat.31">FaceBook</a></li>
                                 <li><i class="fa fa-envelope-o"></i><a href="#">Gmail</a></li>
-                                <li><i class="fa fa-github"></i><a href="#">GitHub</a></li>
+                                <li><i class="fa fa-github"></i><a href="https://github.com/damnhatphong">GitHub</a></li>
                                 <li><i class="fa fa-youtube"></i><a href="#">YouTube</a></li>
                             </ul>
                         </div>
                     </div>
 
-                 
+
                 </div>
                 <!-- /row -->
             </div>

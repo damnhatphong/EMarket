@@ -78,29 +78,18 @@ namespace EMarket.Areas.Client.Controllers
         }
 
         [HttpPost]
-        public IActionResult ThanhToan(string danhsach)
+        public IActionResult ThanhToan(string name,string email,string address,string tel,string danhsach)
         {
-            List <GioHang> danhsachhang = JsonConvert.DeserializeObject<List<GioHang>>(danhsach);
+            List <GioHang> danhsachhang = JsonConvert.DeserializeObject<List<GioHang>>(danhsach);       
+           
             HttpContext.Session.SetString("cart", "");
-            if (danhsachhang.Count()==0)
-            {
-                TempData["status"] = "Không có sản phẩm nào được chọn";
-                return RedirectToAction("Index","HangHoa");
-            }
-            if (HttpContext.Session.GetString("User") == null || HttpContext.Session.GetString("User") == "")
-            {
-                TempData["status"] = "Bạn Cần Phải Đăng Nhập";
-                return RedirectToAction("Index","HangHoa");
-            }
-
             string key = HttpContext.Session.GetString("User");
             var user = eMarketContext.TaiKhoan.Include(p => p.ThongTinTaiKhoan).Where(p => p.UserName == key).FirstOrDefault();
-            var userinfo = eMarketContext.ThongTinTaiKhoan.Where(p => p.TaiKhoanId == user.TaiKhoanId).FirstOrDefault();
            
             HoaDon hoadon = new HoaDon();
-            hoadon.TenKhachHang = "Đàm Nhật Phong";
-            hoadon.Sdt = "0903373103";
-            hoadon.DiaChi = "BlaBlaBla";
+            hoadon.TenKhachHang = name;
+            hoadon.Sdt = tel;
+            hoadon.DiaChi = address;
             hoadon.Email = user.Email;
             hoadon.NgayLapHoaDon = DateTime.Now;
             hoadon.TinhTrang = false;
@@ -113,11 +102,32 @@ namespace EMarket.Areas.Client.Controllers
                 chitethoadon.HangHoaId = item.HangHoa.HangHoaId;
                 chitethoadon.SoLuong = item.SoLuong;
                 chitethoadon.TongTien = item.SoLuong * item.HangHoa.Gia;
-                chitethoadon.HoaDon = hoadon;
+                chitethoadon.HoaDonId = hoadon.HoaDonId;
                 eMarketContext.Add(chitethoadon);
                 eMarketContext.SaveChanges();
 
             }
+
+            foreach (var item in danhsachhang)
+            {
+                var topselling = eMarketContext.TopSelling.Where(p => p.HangHoaId == item.HangHoa.HangHoaId).FirstOrDefault();
+                if (topselling == null)
+                {
+                    var newcolumn = new TopSelling();
+                    newcolumn.HangHoaId = item.HangHoa.HangHoaId;
+                    newcolumn.SoLan = 1;
+                    eMarketContext.Add(newcolumn);
+                    eMarketContext.SaveChanges();
+                }
+                else
+                {
+                    topselling.SoLan += 1;
+                    eMarketContext.Update(topselling);
+                    eMarketContext.SaveChanges();
+                }
+            }
+
+
 
             TempData["status"] = "Đặt Hàng Thành Công";
             return RedirectToAction("Index","HangHoa");

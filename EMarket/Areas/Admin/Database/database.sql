@@ -104,6 +104,48 @@ values (1,10,10),
 		(3,10,10),
 		(5,8,8)
 
+
+
+insert into HoaDon(NgayLapHoaDon,TinhTrang,TenKhachHang,DiaChi,SDT,Email)
+values ('2018/12/05 00:00:00','0','Đàm Nhật Phong','blablablablaSomWhereOverTheRainbow','0903373103','phongdeptrai@gmail.com'),
+('2018/07/08 00:00:00','0','Đàm Nhật Phong','blablablablaSomWhereOverTheRainbow','0903373103','phongdeptrai@gmail.com'),
+('2018/02/08 00:00:00','0','Đàm Nhật Phong','blablablablaSomWhereOverTheRainbow','0903373103','phongdeptrai@gmail.com'),
+('2018/02/19 00:00:00','0','Đàm Nhật Phong','blablablablaSomWhereOverTheRainbow','0903373103','phongdeptrai@gmail.com'),
+('2018/03/07 00:00:00','0','Đàm Nhật Phong','blablablablaSomWhereOverTheRainbow','0903373103','phongdeptrai@gmail.com'),
+('2018/09/15 00:00:00','0','Đàm Nhật Phong','blablablablaSomWhereOverTheRainbow','0903373103','phongdeptrai@gmail.com'),
+('2018/08/07 00:00:00','0','Đàm Nhật Phong','blablablablaSomWhereOverTheRainbow','0903373103','phongdeptrai@gmail.com'),
+('2018/11/02 00:00:00','0','Đàm Nhật Phong','blablablablaSomWhereOverTheRainbow','0903373103','phongdeptrai@gmail.com'),
+('2018/12/07 00:00:00','0','Đàm Nhật Phong','blablablablaSomWhereOverTheRainbow','0903373103','phongdeptrai@gmail.com'),
+('2018/12/15 00:00:00','0','Đàm Nhật Phong','blablablablaSomWhereOverTheRainbow','0903373103','phongdeptrai@gmail.com')
+
+insert into ChiTietHoaDon(HoaDonId,HangHoaId,SoLuong,TongTien)
+values(15,1,2,1999.8),
+(36,2,1,1600),
+(37,2,1,1600),
+(38,3,1,2222),
+(39,3,1,1700),
+(40,4,1,1600),
+(41,2,1,2500),
+(42,5,1,555.5),
+(43,6,1,1600),
+(43,3,1,7800),
+(43,2,1,3600)
+
+
+
+
+select hd.HoadonId,sum(ct.TongTien)
+from ChiTietHoaDon ct join HoaDon hd on ct.HoaDonId = hd.HoaDonId
+group by hd.HoaDonId
+
+select datepart(month,hd.NgayLapHoaDon),sum(ct.TongTien)
+from ChiTietHoaDon ct join HoaDon hd on ct.HoaDonId = hd.HoaDonId
+group by datepart(month,hd.NgayLapHoaDon)
+
+select datepart(month,hd.NgayLapHoaDon)
+from HoaDon hd
+
 select *
-from HangHoa
+from HoaDon
 where HangHoaID in (select HangHoaID from TopSelling)
+
