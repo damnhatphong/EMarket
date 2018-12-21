@@ -1,6 +1,5 @@
-﻿@model EMarket.Areas.Admin.Models.TopSelling
-
-@{
+﻿@model EMarket.Areas.Admin.Models.DanhGia
+{
     ViewData["Title"] = "Details";
 }
 
@@ -11,26 +10,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.SoLan)
+            @Html.DisplayNameFor(model => model.Comment)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SoLan)
+            @Html.DisplayFor(model => model.Comment)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DanhGia)
+            @Html.DisplayNameFor(model => model.Rating)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DanhGia)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HangHoa)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.HangHoa.Hinh)
-        </dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>       
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.TopSellingId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

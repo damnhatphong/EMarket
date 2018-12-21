@@ -11,8 +11,10 @@ namespace EMarket.Areas.Admin.Models
         public int Id { get; set; }
         public int TaiKhoanId { get; set; }
         public int HangHoaId { get; set; }
+        [Display(Name ="Bình Luận")]
         [MaxLength]
         public string Comment { get; set; }
+        [Display(Name ="Đánh Giá")]
         public int Rating { get; set; }
 
 

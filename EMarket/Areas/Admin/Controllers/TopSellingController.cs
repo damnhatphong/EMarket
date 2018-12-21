@@ -36,9 +36,8 @@ namespace EMarket.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var topSelling = await _context.TopSelling
-                .Include(t => t.HangHoa)
-                .FirstOrDefaultAsync(m => m.TopSellingId == id);
+            var topSelling = await _context.DanhGia               
+                .FirstOrDefaultAsync(m => m.HangHoaId == id);
             if (topSelling == null)
             {
                 return NotFound();

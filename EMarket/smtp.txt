@@ -1,0 +1,462 @@
+Connected to smtp://smtp.gmail.com:587/?starttls=when-available
+S: 220 smtp.gmail.com ESMTP t29sm35146001pfa.158 - gsmtp
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: AUTH PLAIN AGRhbW5oYXRwaG9uZwBkYW1uaGF0cGhvbmc=
+S: 535-5.7.8 Username and Password not accepted. Learn more at
+S: 535 5.7.8  https://support.google.com/mail/?p=BadCredentials t29sm35146001pfa.158 - gsmtp
+C: AUTH LOGIN
+S: 334 VXNlcm5hbWU6
+C: ZGFtbmhhdHBob25n
+S: 334 UGFzc3dvcmQ6
+C: ZGFtbmhhdHBob25n
+S: 535-5.7.8 Username and Password not accepted. Learn more at
+S: 535 5.7.8  https://support.google.com/mail/?p=BadCredentials t29sm35146001pfa.158 - gsmtp
+Connected to smtp://smtp.gmail.com:587/?starttls=when-available
+S: 220 smtp.gmail.com ESMTP 85sm33591247pfw.17 - gsmtp
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: AUTH PLAIN AGRhbW5oYXRwaG9uZzY3MTk5OABuaGF0cGhvbmc2NzE5OTg=
+S: 235 2.7.0 Accepted
+C: MAIL FROM:<damnhatphong671998@gmail.com>
+C: RCPT TO:<damnhatphong671998@gmail.com>
+S: 250 2.1.0 OK 85sm33591247pfw.17 - gsmtp
+S: 250 2.1.5 OK 85sm33591247pfw.17 - gsmtp
+C: DATA
+S: 354  Go ahead 85sm33591247pfw.17 - gsmtp
+C: From: Emarket-Dukes <damnhatphong671998@gmail.com>
+C: Date: Sat, 22 Dec 2018 01:12:56 +0700
+C: Subject: EmarketInvoice
+C: Message-Id: <YQLJ8TTFA6U4.9RL0L6M3D8C4@localhost.localdomain>
+C: To: "Mr(Mrs)" =?utf-8?b?xJDDoG0gTmjhuq10?= Phong
+C: 	<damnhatphong671998@gmail.com>
+C: MIME-Version: 1.0
+C: Content-Type: text/plain; charset=utf-8
+C: 
+C: Hey Chandler,
+C: 
+C: I just wanted to let you know that Monica and I were going to go play some paintball, you in?
+C: 
+C: -- Joey
+C: 
+C: .
+S: 250 2.0.0 OK 1545415980 85sm33591247pfw.17 - gsmtp
+C: QUIT
+S: 221 2.0.0 closing connection 85sm33591247pfw.17 - gsmtp
+Connected to smtp://smtp.gmail.com:587/?starttls=when-available
+S: 220 smtp.gmail.com ESMTP w3sm32724177pge.8 - gsmtp
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: AUTH PLAIN AGRhbW5oYXRwaG9uZzY3MTk5OABuaGF0cGhvbmc2NzE5OTg=
+S: 235 2.7.0 Accepted
+C: MAIL FROM:<damnhatphong671998@gmail.com>
+C: RCPT TO:<damnhatphong671998@gmail.com>
+S: 250 2.1.0 OK w3sm32724177pge.8 - gsmtp
+S: 250 2.1.5 OK w3sm32724177pge.8 - gsmtp
+C: DATA
+S: 354  Go ahead w3sm32724177pge.8 - gsmtp
+C: From: Emarket-Dukes <damnhatphong671998@gmail.com>
+C: Date: Sat, 22 Dec 2018 01:14:46 +0700
+C: Subject: EmarketInvoice
+C: Message-Id: <BP56FBUFA6U4.JJN0HTUWA4MT@localhost.localdomain>
+C: To: "Mr(Mrs)" =?utf-8?b?xJDDoG0gTmjhuq10?= Phong
+C: 	<damnhatphong671998@gmail.com>
+C: MIME-Version: 1.0
+C: Content-Type: text/html; charset=utf-8
+C: Content-Id: <TAVHFBUFA6U4.XG91C4W2W5F82@localhost.localdomain>
+C: Content-Transfer-Encoding: quoted-printable
+C: 
+C: <html><body><table style=3D'border: 1px solid black;border-collapse: c=
+C: ollapse;'><thead><tr><th style =3D 'border: 1px solid black;border-col=
+C: lapse: collapse;' >M=C3=A3 h=C3=B3a =C4=91=C6=A1n:</th><thstyle =3D 'b=
+C: order: 1px solid black;border-collapse: collapse;' >T=C3=AAn h=C3=A0ng=
+C:  h=C3=B3a:</th><thstyle =3D 'border: 1px solid black;border-collapse: =
+C: collapse;' >S=E1=BB=91 l=C6=B0=E1=BB=A3ng:</th><th style =3D 'border: =
+C: 1px solid black;border-collapse: collapse;' >T=E1=BB=95ng Ti=E1=BB=81n=
+C: :</th></tr></thead><tbody><tr><td style =3D 'border: 1px solid black;b=
+C: order-collapse: collapse;'>52</td><td style =3D 'border: 1px solid bla=
+C: ck;border-collapse: collapse;'>Galaxy Note9</td><td style =3D 'border:=
+C:  1px solid black;border-collapse: collapse;'>1</td><td style =3D 'bord=
+C: er: 1px solid black;border-collapse: collapse;'799.9$</td></tr><tr><td=
+C:  style =3D 'border: 1px solid black;border-collapse: collapse;'>52</td=
+C: ><td style =3D 'border: 1px solid black;border-collapse: collapse;'>IP=
+C: ad-Pro</td><td style =3D 'border: 1px solid black;border-collapse: col=
+C: lapse;'>1</td><td style =3D 'border: 1px solid black;border-collapse: =
+C: collapse;'475$</td></tr></tbody></table><tr><td></td><td></td><td styl=
+C: e=3D'float:right; margin-right: 10px;'>T=E1=BB=95ng:</td><td style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;'1274.9$</td></tr>=
+C: </body></html>
+C: 
+C: .
+S: 250 2.0.0 OK 1545416090 w3sm32724177pge.8 - gsmtp
+C: QUIT
+S: 221 2.0.0 closing connection w3sm32724177pge.8 - gsmtp
+Connected to smtp://smtp.gmail.com:587/?starttls=when-available
+S: 220 smtp.gmail.com ESMTP 24sm55616917pfl.32 - gsmtp
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: AUTH PLAIN AGRhbW5oYXRwaG9uZzY3MTk5OABuaGF0cGhvbmc2NzE5OTg=
+S: 235 2.7.0 Accepted
+C: MAIL FROM:<damnhatphong671998@gmail.com>
+C: RCPT TO:<damnhatphong671998@gmail.com>
+S: 250 2.1.0 OK 24sm55616917pfl.32 - gsmtp
+S: 250 2.1.5 OK 24sm55616917pfl.32 - gsmtp
+C: DATA
+S: 354  Go ahead 24sm55616917pfl.32 - gsmtp
+C: From: Emarket-Dukes <damnhatphong671998@gmail.com>
+C: Date: Sat, 22 Dec 2018 01:16:55 +0700
+C: Subject: EmarketInvoice
+C: Message-Id: <ZUT2SWUFA6U4.MD3TYKSWNQ4L2@localhost.localdomain>
+C: To: "Mr(Mrs)" =?utf-8?b?xJDDoG0gTmjhuq10?= Phong
+C: 	<damnhatphong671998@gmail.com>
+C: MIME-Version: 1.0
+C: Content-Type: text/html; charset=utf-8
+C: Content-Id: <LL9ESWUFA6U4.WGYT9B4PMX5U@localhost.localdomain>
+C: Content-Transfer-Encoding: quoted-printable
+C: 
+C: <html><body><table style=3D'border: 1px solid black;border-collapse: c=
+C: ollapse; width:100%;'><thead><tr><th style =3D 'border: 1px solid blac=
+C: k;border-collapse: collapse;' >M=C3=A3 h=C3=B3a =C4=91=C6=A1n:</th><th=
+C: style =3D 'border: 1px solid black;border-collapse: collapse;' >T=C3=AA=
+C: n h=C3=A0ng h=C3=B3a:</th><thstyle =3D 'border: 1px solid black;border=
+C: -collapse: collapse;' >S=E1=BB=91 l=C6=B0=E1=BB=A3ng:</th><th style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;' >T=E1=BB=95ng Ti=
+C: =E1=BB=81n:</th></tr></thead><tbody><tr><td style =3D 'border: 1px sol=
+C: id black;border-collapse: collapse;'>51</td><td style =3D 'border: 1px=
+C:  solid black;border-collapse: collapse;'>IPhone XS</td><td style =3D '=
+C: border: 1px solid black;border-collapse: collapse;'>1</td><td style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;'999.9$</td></tr><=
+C: tr><td style =3D 'border: 1px solid black;border-collapse: collapse;'>=
+C: 51</td><td style =3D 'border: 1px solid black;border-collapse: collaps=
+C: e;'>MacBook-Air</td><td style =3D 'border: 1px solid black;border-coll=
+C: apse: collapse;'>1</td><td style =3D 'border: 1px solid black;border-c=
+C: ollapse: collapse;'1600$</td></tr></tbody></table><tr><td></td><td></t=
+C: d><td style=3D'float:right; margin-right: 10px;'>T=E1=BB=95ng:</td><td=
+C:  style =3D 'border: 1px solid black;border-collapse: collapse;'2599.9$=
+C: </td></tr></body></html>
+C: 
+C: .
+S: 250 2.0.0 OK 1545416219 24sm55616917pfl.32 - gsmtp
+C: QUIT
+S: 221 2.0.0 closing connection 24sm55616917pfl.32 - gsmtp
+Connected to smtp://smtp.gmail.com:587/?starttls=when-available
+S: 220 smtp.gmail.com ESMTP y84sm47817558pfb.81 - gsmtp
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: AUTH PLAIN AGRhbW5oYXRwaG9uZzY3MTk5OABuaGF0cGhvbmc2NzE5OTg=
+S: 235 2.7.0 Accepted
+C: MAIL FROM:<damnhatphong671998@gmail.com>
+C: RCPT TO:<damnhatphong671998@gmail.com>
+S: 250 2.1.0 OK y84sm47817558pfb.81 - gsmtp
+S: 250 2.1.5 OK y84sm47817558pfb.81 - gsmtp
+C: DATA
+S: 354  Go ahead y84sm47817558pfb.81 - gsmtp
+C: From: Emarket-Dukes <damnhatphong671998@gmail.com>
+C: Date: Sat, 22 Dec 2018 01:18:57 +0700
+C: Subject: EmarketInvoice
+C: Message-Id: <OTFSZGVFA6U4.G5TG5758CL2K3@localhost.localdomain>
+C: To: "Mr(Mrs)" =?utf-8?b?xJDDoG0gTmjhuq10?= Phong
+C: 	<damnhatphong671998@gmail.com>
+C: MIME-Version: 1.0
+C: Content-Type: text/html; charset=utf-8
+C: Content-Id: <CQQ90HVFA6U4.35ODRS5KO5LB1@localhost.localdomain>
+C: Content-Transfer-Encoding: quoted-printable
+C: 
+C: <html><body><table style=3D'border: 1px solid black;border-collapse: c=
+C: ollapse; width:100%;'><thead><tr><th style =3D 'border: 1px solid blac=
+C: k;border-collapse: collapse;' >M=C3=A3 h=C3=B3a =C4=91=C6=A1n:</th><th=
+C:  style =3D 'border: 1px solid black;border-collapse: collapse;' >T=C3=AA=
+C: n h=C3=A0ng h=C3=B3a:</th><th style =3D 'border: 1px solid black;borde=
+C: r-collapse: collapse;' >S=E1=BB=91 l=C6=B0=E1=BB=A3ng:</th><th style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;' >T=E1=BB=95ng Ti=
+C: =E1=BB=81n:</th></tr></thead><tbody><tr><td style =3D 'border: 1px sol=
+C: id black;border-collapse: collapse;'>52</td><td style =3D 'border: 1px=
+C:  solid black;border-collapse: collapse;'>Galaxy Note9</td><td style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;'>1</td><td style =
+C: =3D 'border: 1px solid black;border-collapse: collapse;'799.9$</td></t=
+C: r><tr><td style =3D 'border: 1px solid black;border-collapse: collapse=
+C: ;'>52</td><td style =3D 'border: 1px solid black;border-collapse: coll=
+C: apse;'>IPad-Pro</td><td style =3D 'border: 1px solid black;border-coll=
+C: apse: collapse;'>1</td><td style =3D 'border: 1px solid black;border-c=
+C: ollapse: collapse;'475$</td></tr></tbody></table><tr><td></td><td></td=
+C: ><td style=3D'float:right; margin-right: 10px;'>T=E1=BB=95ng:</td><td =
+C: style =3D 'border: 1px solid black;border-collapse: collapse;'1274.9$<=
+C: /td></tr></body></html>
+C: 
+C: .
+S: 250 2.0.0 OK 1545416341 y84sm47817558pfb.81 - gsmtp
+C: QUIT
+S: 221 2.0.0 closing connection y84sm47817558pfb.81 - gsmtp
+Connected to smtp://smtp.gmail.com:587/?starttls=when-available
+S: 220 smtp.gmail.com ESMTP j9sm30226298pfi.86 - gsmtp
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: AUTH PLAIN AGRhbW5oYXRwaG9uZzY3MTk5OABuaGF0cGhvbmc2NzE5OTg=
+S: 235 2.7.0 Accepted
+C: MAIL FROM:<damnhatphong671998@gmail.com>
+C: RCPT TO:<damnhatphong671998@gmail.com>
+S: 250 2.1.0 OK j9sm30226298pfi.86 - gsmtp
+S: 250 2.1.5 OK j9sm30226298pfi.86 - gsmtp
+C: DATA
+S: 354  Go ahead j9sm30226298pfi.86 - gsmtp
+C: From: Emarket-Dukes <damnhatphong671998@gmail.com>
+C: Date: Sat, 22 Dec 2018 01:21:01 +0700
+C: Subject: EmarketInvoice
+C: Message-Id: <JW54E1WFA6U4.MKR64YZFK0EC3@localhost.localdomain>
+C: To: "Mr(Mrs)" =?utf-8?b?xJDDoG0gTmjhuq10?= Phong
+C: 	<damnhatphong671998@gmail.com>
+C: MIME-Version: 1.0
+C: Content-Type: text/html; charset=utf-8
+C: Content-Id: <1TMFE1WFA6U4.UFNCX7N7B2N6@localhost.localdomain>
+C: Content-Transfer-Encoding: quoted-printable
+C: 
+C: <html><body><table style=3D'border: 1px solid black;border-collapse: c=
+C: ollapse; width:100%;'><thead><tr><th style =3D 'border: 1px solid blac=
+C: k;border-collapse: collapse;' >M=C3=A3 h=C3=B3a =C4=91=C6=A1n:</th><th=
+C:  style =3D 'border: 1px solid black;border-collapse: collapse;' >T=C3=AA=
+C: n h=C3=A0ng h=C3=B3a:</th><th style =3D 'border: 1px solid black;borde=
+C: r-collapse: collapse;' >S=E1=BB=91 l=C6=B0=E1=BB=A3ng:</th><th style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;' >T=E1=BB=95ng Ti=
+C: =E1=BB=81n:</th></tr></thead><tbody><tr><td style =3D 'border: 1px sol=
+C: id black;border-collapse: collapse;'>51</td><td style =3D 'border: 1px=
+C:  solid black;border-collapse: collapse;'>IPhone XS</td><td style =3D '=
+C: border: 1px solid black;border-collapse: collapse;'>1</td><td style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;'999.9$</td></tr><=
+C: tr><td style =3D 'border: 1px solid black;border-collapse: collapse;'>=
+C: 51</td><td style =3D 'border: 1px solid black;border-collapse: collaps=
+C: e;'>MacBook-Air</td><td style =3D 'border: 1px solid black;border-coll=
+C: apse: collapse;'>1</td><td style =3D 'border: 1px solid black;border-c=
+C: ollapse: collapse;'1600$</td></tr></tbody></table><tr><td></td><td></t=
+C: d><td style=3D'float:right; margin-right: 10px;'>T=E1=BB=95ng:</td><td=
+C:  style =3D 'border: 1px solid black;border-collapse: collapse;'2599.9$=
+C: </td></tr></body></html>
+C: 
+C: .
+S: 250 2.0.0 OK 1545416464 j9sm30226298pfi.86 - gsmtp
+C: QUIT
+S: 221 2.0.0 closing connection j9sm30226298pfi.86 - gsmtp
+Connected to smtp://smtp.gmail.com:587/?starttls=when-available
+S: 220 smtp.gmail.com ESMTP z9sm64336518pfd.99 - gsmtp
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: AUTH PLAIN AGRhbW5oYXRwaG9uZzY3MTk5OABuaGF0cGhvbmc2NzE5OTg=
+S: 235 2.7.0 Accepted
+C: MAIL FROM:<damnhatphong671998@gmail.com> BODY=8BITMIME
+C: RCPT TO:<damnhatphong671998@gmail.com>
+S: 250 2.1.0 OK z9sm64336518pfd.99 - gsmtp
+S: 250 2.1.5 OK z9sm64336518pfd.99 - gsmtp
+C: DATA
+S: 354  Go ahead z9sm64336518pfd.99 - gsmtp
+C: From: Emarket-Dukes <damnhatphong671998@gmail.com>
+C: Date: Sat, 22 Dec 2018 01:23:22 +0700
+C: Subject: EmarketInvoice
+C: Message-Id: <520VNOWFA6U4.BDK7XUPJBIH41@localhost.localdomain>
+C: To: "Mr(Mrs)" =?utf-8?b?xJDDoG0gTmjhuq10?= Phong
+C: 	<damnhatphong671998@gmail.com>
+C: MIME-Version: 1.0
+C: Content-Type: text/html; charset=utf-8
+C: Content-Id: <Q8S8OOWFA6U4.GUCUH432HNV@localhost.localdomain>
+C: Content-Transfer-Encoding: 8bit
+C: 
+C: <html><body><table style='border: 1px solid black;border-collapse: collapse; width:100%;'><thead><tr><th style = 'border: 1px solid black;border-collapse: collapse;' >Mã hóa đơn:</th><th style = 'border: 1px solid black;border-collapse: collapse;' >Tên hàng hóa:</th><th style = 'border: 1px solid black;border-collapse: collapse;' >Số lượng:</th><th style = 'border: 1px solid black;border-collapse: collapse;' >Tổng Tiền:</th></tr></thead><tbody></tbody></table><tr><td></td><td></td><td style='float:right; margin-right: 10px;'>Tổng:</td><td style = 'border: 1px solid black;border-collapse: collapse;'>0$</td></tr></body></html>
+C: 
+C: .
+S: 250 2.0.0 OK 1545416605 z9sm64336518pfd.99 - gsmtp
+C: QUIT
+S: 221 2.0.0 closing connection z9sm64336518pfd.99 - gsmtp
+Connected to smtp://smtp.gmail.com:587/?starttls=when-available
+S: 220 smtp.gmail.com ESMTP i21sm37045162pgm.17 - gsmtp
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+C: EHLO [IPv6:2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-smtp.gmail.com at your service, [2405:4800:58f7:3cb0:7cdf:de1f:894e:7895]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: AUTH PLAIN AGRhbW5oYXRwaG9uZzY3MTk5OABuaGF0cGhvbmc2NzE5OTg=
+S: 235 2.7.0 Accepted
+C: MAIL FROM:<damnhatphong671998@gmail.com>
+C: RCPT TO:<damnhatphong671998@gmail.com>
+S: 250 2.1.0 OK i21sm37045162pgm.17 - gsmtp
+S: 250 2.1.5 OK i21sm37045162pgm.17 - gsmtp
+C: DATA
+S: 354  Go ahead i21sm37045162pgm.17 - gsmtp
+C: From: Emarket-Dukes <damnhatphong671998@gmail.com>
+C: Date: Sat, 22 Dec 2018 01:28:33 +0700
+C: Subject: EmarketInvoice
+C: Message-Id: <6VHB44YFA6U4.OGEMNM8X2UO52@localhost.localdomain>
+C: To: "Mr(Mrs)" =?utf-8?b?xJDDoG0gTmjhuq10?= Phong
+C: 	<damnhatphong671998@gmail.com>
+C: MIME-Version: 1.0
+C: Content-Type: text/html; charset=utf-8
+C: Content-Id: <WMCN44YFA6U4.P676DQDCMNM23@localhost.localdomain>
+C: Content-Transfer-Encoding: quoted-printable
+C: 
+C: <html><body><table style=3D'border: 1px solid black;border-collapse: c=
+C: ollapse; width:100%;'><thead><tr><th style =3D 'border: 1px solid blac=
+C: k;border-collapse: collapse;' >M=C3=A3 h=C3=B3a =C4=91=C6=A1n:</th><th=
+C:  style =3D 'border: 1px solid black;border-collapse: collapse;' >T=C3=AA=
+C: n h=C3=A0ng h=C3=B3a:</th><th style =3D 'border: 1px solid black;borde=
+C: r-collapse: collapse;' >S=E1=BB=91 l=C6=B0=E1=BB=A3ng:</th><th style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;' >T=E1=BB=95ng Ti=
+C: =E1=BB=81n:</th></tr></thead><tbody><tr><td style =3D 'border: 1px sol=
+C: id black;border-collapse: collapse;'>48</td><td style =3D 'border: 1px=
+C:  solid black;border-collapse: collapse;'>MacBook-Air</td><td style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;'>1</td><td style =
+C: =3D 'border: 1px solid black;border-collapse: collapse;'>1600$</td></t=
+C: r><tr><td style =3D 'border: 1px solid black;border-collapse: collapse=
+C: ;'>48</td><td style =3D 'border: 1px solid black;border-collapse: coll=
+C: apse;'>IPhone XS</td><td style =3D 'border: 1px solid black;border-col=
+C: lapse: collapse;'>1</td><td style =3D 'border: 1px solid black;border-=
+C: collapse: collapse;'>999.9$</td></tr><tr><td style =3D 'border: 1px so=
+C: lid black;border-collapse: collapse;'>48</td><td style =3D 'border: 1p=
+C: x solid black;border-collapse: collapse;'>Galaxy Tab S</td><td style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;'>1</td><td style =
+C: =3D 'border: 1px solid black;border-collapse: collapse;'>499.9$</td></=
+C: tr></tbody></table><tr><td></td><td></td><td style=3D'float:right; mar=
+C: gin-right: 10px;'>T=E1=BB=95ng:</td><td style =3D 'border: 1px solid b=
+C: lack;border-collapse: collapse;'>3099.8$</td></tr></body></html>
+C: 
+C: .
+S: 250 2.0.0 OK 1545416916 i21sm37045162pgm.17 - gsmtp
+C: QUIT
+S: 221 2.0.0 closing connection i21sm37045162pgm.17 - gsmtp

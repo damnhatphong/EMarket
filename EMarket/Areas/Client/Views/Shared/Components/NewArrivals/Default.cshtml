@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<EMarket.Areas.Admin.Models.HangHoa>
 @{
     Layout = null;
+    var khohang = ViewBag.Checkavailable;
 }
 
 <div class="section">
@@ -24,12 +25,16 @@
                         <div id="tab1" class="tab-pane active">
                             <div class="products-slick" data-nav="#slick-nav-1">
                                 <!-- product -->
-                                @foreach(var item in Model) {
+                                @foreach (var item in Model) {
                                 <div class="product">
                                     <div class="product-img">
                                         <img src="~/img/@item.Hinh" alt="">
                                         <div class="product-label">
                                             <span class="new">@item.NhaCungCap.TenNhaCungCap</span>
+                                            @if (!khohang.Contains(item.HangHoaId))
+                                            {
+                                                <span class="sale">hết</span>
+                                            }
                                         </div>
                                     </div>
                                     <div class="product-body">
@@ -45,7 +50,14 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <a asp-controller="GioHang" asp-action="Them" asp-route-id="@item.HangHoaId" asp-route-soLuong="1" class="btn add-to-cart-btn" style="padding-top:8px;"><i class="fa fa-shopping-cart"></i> add to cart</a>
+                                        @if (khohang.Contains(item.HangHoaId))
+                                        {
+                                            <a asp-controller="GioHang" asp-action="Them" asp-route-id="@item.HangHoaId" asp-route-soLuong="1" class="btn add-to-cart-btn" style="padding-top:8px;"><i class="fa fa-shopping-cart"></i> add to cart</a>
+                                        }
+                                        else
+                                        {
+                                            <button disabled class="btn add-to-cart-btn" style="padding-top:8px;"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                        }
                                     </div>
                                 </div>
                                }

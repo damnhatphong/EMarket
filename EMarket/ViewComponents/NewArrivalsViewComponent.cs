@@ -18,6 +18,7 @@ namespace EMarket.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var list = await GetNhaCungCapAsync();
+            ViewBag.Checkavailable = db.KhoHang.Select(p => p.HangHoaId).ToList();
             return View(list);
         }
         private Task<List<HangHoa>> GetNhaCungCapAsync()

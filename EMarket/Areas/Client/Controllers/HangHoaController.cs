@@ -23,6 +23,7 @@ namespace EMarket.Areas.Client.Controllers
         // GET: HangHoa
         public async Task<IActionResult> Index(int? page, int? loai, int? nhacc,string pattern)
         {
+
             int pageSize = 6;
             if (page == null) page = 1;
             var eMarketContext = _context.HangHoa.Include(p=>p.Loai).Include(p=>p.NhaCungCap).OrderBy(p=>p.HangHoaId);
@@ -30,6 +31,7 @@ namespace EMarket.Areas.Client.Controllers
             if (nhacc != null) eMarketContext = eMarketContext.Where(p => p.NhaCungCapId == nhacc).OrderBy(p => p.HangHoaId);            
             if (pattern != null) { eMarketContext = eMarketContext.Where(p => p.TenHangHoa.Contains(pattern)).OrderBy(p => p.HangHoaId); }
 
+            ViewBag.Checkavailable = _context.KhoHang.Select(p=>p.HangHoaId).ToList();
             ViewData["LoaiID"] = loai;
             ViewData["NhaCungCapID"] = nhacc;
             ViewData["pattern"] = pattern;
@@ -49,6 +51,7 @@ namespace EMarket.Areas.Client.Controllers
                 .Include(h => h.Loai)
                 .Include(h => h.NhaCungCap)
                 .FirstOrDefaultAsync(m => m.HangHoaId == id);
+            ViewBag.Checkavailable = _context.KhoHang.Select(p => p.HangHoaId).ToList();
             if (hangHoa == null)
             {
                 return NotFound();

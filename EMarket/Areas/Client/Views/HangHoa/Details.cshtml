@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Details";
+    var khohang = ViewBag.Checkavailable;
+    var hethang = "(hết)";
 }
 
 <div class="col-md-9">
@@ -18,7 +20,7 @@
     <!-- Product details -->
     <div class="col-md-8">
         <div class="product-details">
-            <h2 class="product-name">product name goes here</h2>
+            <h2 class="product-name">@Model.TenHangHoa @if (!khohang.Contains(Model.HangHoaId)) { @hethang }</h2>
             <div>
                 <div class="product-rating">
                     <i class="fa fa-star"></i>
@@ -45,7 +47,14 @@
                             <span class="qty-down">-</span>
                         </div>
                     </div>
-                    <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                    @if (khohang.Contains(Model.HangHoaId))
+                    {
+                        <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                    }
+                    else
+                    {
+                        <button disabled type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                    }
                 </form>
             </div>
 
