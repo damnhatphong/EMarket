@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EMarket.Areas.Admin.Filters;
 using EMarket.Areas.Admin.Models;
 using EMarket.Areas.Admin.Models.ThongKe;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace EMarket.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [ServiceFilter(typeof(SessionFilter))]
     public class ThongKeController : Controller
     {
         private readonly EMarketContext _context;

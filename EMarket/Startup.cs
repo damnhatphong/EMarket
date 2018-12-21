@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EMarket.Areas.Admin.Models;
 using Microsoft.EntityFrameworkCore;
+using EMarket.Areas.Admin.Filters;
 
 namespace EMarket
 {
@@ -36,6 +37,7 @@ namespace EMarket
                 options.UseSqlServer(Configuration.GetConnectionString("EMarket"));
             });
             services.AddSession();
+            services.AddScoped<SessionFilter>();           
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -62,16 +64,16 @@ namespace EMarket
                     name: "areas",
                     template: "{area:exists}/{controller=HangHoa}/{action=Index}/{id?}");
 
-                /*routes.MapAreaRoute(
-                    name:"Admin",
-                    areaName:"Admin",
-                    template"{controller=HangHoa}/{action=Index}/{id?}");*/
+                routes.MapAreaRoute(
+                    name: "Client",
+                    areaName: "Client",
+                    template: "{controller=HangHoa}/{action=Index}/{id?}");
 
                 routes.MapAreaRoute(
-                    name: "default",
-                    areaName:"Client",
-                    template: "{controller=HangHoa}/{action=Index}/{id?}");
-               
+                 name: "Admin",
+                 areaName: "Admin",
+                 template: "{controller=HangHoa}/{action=Index}/{id?}");
+
             });
         }
     }

@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using EMarket.Areas.Admin.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using EMarket.Areas.Admin.Filters;
 
 namespace EMarket.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [ServiceFilter(typeof(SessionFilter))]
     public class HangHoaController : Controller
     {
         private readonly EMarketContext _context;
@@ -19,7 +21,7 @@ namespace EMarket.Areas.Admin.Controllers
         public HangHoaController(EMarketContext context)
         {
             _context = context;
-            if (HttpContext.Session.GetString("User") == null)  RedirectToAction("Login");
+           
         }
 
         // GET: Admin/HangHoas

@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EMarket.Areas.Admin.Models;
 using EMarket.Cryptography;
+using EMarket.Areas.Admin.Filters;
+
 namespace EMarket.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [ServiceFilter(typeof(SessionFilter))]
     public class TaiKhoanController : Controller
     {
         private readonly EMarketContext _context;

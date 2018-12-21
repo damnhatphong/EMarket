@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EMarket.Areas.Admin.Models;
+using EMarket.Areas.Admin.Filters;
 
 namespace EMarket.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [ServiceFilter(typeof(SessionFilter))]
     public class ThongTinTaiKhoanController : Controller
     {
         private readonly EMarketContext _context;
