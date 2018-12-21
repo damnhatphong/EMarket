@@ -10,80 +10,47 @@ using EMarket.Areas.Admin.Models;
 namespace EMarket.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class HoaDonController : Controller
+    public class KhoHangController : Controller
     {
         private readonly EMarketContext _context;
 
-        public HoaDonController(EMarketContext context)
+        public KhoHangController(EMarketContext context)
         {
             _context = context;
         }
 
-        // GET: Admin/HoaDons
+        // GET: Admin/KhoHang
         public async Task<IActionResult> Index()
         {
-            return View(await _context.HoaDon.ToListAsync());
+            var eMarketContext = _context.KhoHang.Include(k => k.HangHoa);
+            return View(await eMarketContext.ToListAsync());
         }
 
-        // GET: Admin/HoaDons/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var chitiet = await _context.ChiTietHoaDon.Where(p => p.HoaDonId == id).ToListAsync();
-
-
-            if (chitiet == null)
-            {
-                return NotFound();
-            }
-
-            return View(chitiet);
-        }
-
-        // GET: Admin/HoaDons/Create
+        // GET: Admin/KhoHang/Create
         public IActionResult Create()
         {
+            ViewData["HangHoaId"] = new SelectList(_context.HangHoa, "HangHoaId", "TenHangHoa");
             return View();
         }
 
-        // POST: Admin/HoaDons/Create
+        // POST: Admin/KhoHang/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HoaDonId,NgayLapHoaDon,TinhTrang,TenKhachHang,DiaChi,Sdt,Email")] HoaDon hoaDon)
+        public async Task<IActionResult> Create([Bind("KhoHangId,SoLuong,HangHoaId")] KhoHang khoHang)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hoaDon);
+                _context.Add(khoHang);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(hoaDon);
+            ViewData["HangHoaId"] = new SelectList(_context.HangHoa, "HangHoaId", "Hinh", khoHang.HangHoaId);
+            return View(khoHang);
         }
 
-        public async Task<IActionResult> Check(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var hoaDon = await _context.HoaDon.FindAsync(id);
-            if (hoaDon == null)
-            {
-                return NotFound();
-            }
-            hoaDon.TinhTrang = !hoaDon.TinhTrang;
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
-        // GET: Admin/HoaDons/Edit/5
+        // GET: Admin/KhoHang/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,22 +58,23 @@ namespace EMarket.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var hoaDon = await _context.HoaDon.FindAsync(id);
-            if (hoaDon == null)
+            var khoHang = await _context.KhoHang.FindAsync(id);
+            if (khoHang == null)
             {
                 return NotFound();
             }
-            return View(hoaDon);
+            ViewData["HangHoaId"] = new SelectList(_context.HangHoa, "HangHoaId", "Hinh", khoHang.HangHoaId);
+            return View(khoHang);
         }
 
-        // POST: Admin/HoaDons/Edit/5
+        // POST: Admin/KhoHang/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HoaDonId,NgayLapHoaDon,TinhTrang,TenKhachHang,DiaChi,Sdt,Email")] HoaDon hoaDon)
+        public async Task<IActionResult> Edit(int id, [Bind("KhoHangId,SoLuong,HangHoaId")] KhoHang khoHang)
         {
-            if (id != hoaDon.HoaDonId)
+            if (id != khoHang.KhoHangId)
             {
                 return NotFound();
             }
@@ -115,12 +83,12 @@ namespace EMarket.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(hoaDon);
+                    _context.Update(khoHang);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HoaDonExists(hoaDon.HoaDonId))
+                    if (!KhoHangExists(khoHang.KhoHangId))
                     {
                         return NotFound();
                     }
@@ -131,10 +99,11 @@ namespace EMarket.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(hoaDon);
+            ViewData["HangHoaId"] = new SelectList(_context.HangHoa, "HangHoaId", "Hinh", khoHang.HangHoaId);
+            return View(khoHang);
         }
 
-        // GET: Admin/HoaDons/Delete/5
+        // GET: Admin/KhoHang/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,30 +111,31 @@ namespace EMarket.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var hoaDon = await _context.HoaDon
-                .FirstOrDefaultAsync(m => m.HoaDonId == id);
-            if (hoaDon == null)
+            var khoHang = await _context.KhoHang
+                .Include(k => k.HangHoa)
+                .FirstOrDefaultAsync(m => m.KhoHangId == id);
+            if (khoHang == null)
             {
                 return NotFound();
             }
 
-            return View(hoaDon);
+            return View(khoHang);
         }
 
-        // POST: Admin/HoaDons/Delete/5
+        // POST: Admin/KhoHang/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hoaDon = await _context.HoaDon.FindAsync(id);
-            _context.HoaDon.Remove(hoaDon);
+            var khoHang = await _context.KhoHang.FindAsync(id);
+            _context.KhoHang.Remove(khoHang);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool HoaDonExists(int id)
+        private bool KhoHangExists(int id)
         {
-            return _context.HoaDon.Any(e => e.HoaDonId == id);
+            return _context.KhoHang.Any(e => e.KhoHangId == id);
         }
     }
 }

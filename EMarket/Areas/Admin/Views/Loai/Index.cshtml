@@ -34,13 +34,13 @@
                                     @Html.DisplayFor(modelItem => item.MoTa)
                                 </td>
                                 <td>
-                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.LoaiId">Sửa</a>
+                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.LoaiId"><i class="fas fa-edit"></i></a>
                                     <br />
                                     <br />
-                                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.LoaiId">Chi Tiết</a>
+                                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.LoaiId"><i class="fas fa-info"></i></a>
                                     <br />
                                     <br />
-                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.LoaiId">Xóa</a>
+                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.LoaiId"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         }
@@ -50,4 +50,4 @@
         </div>
     </div>
 </div>
-<a class="btn btn-success float-right" asp-action="Create">Thêm</a>
+<a class="btn btn-success float-right" asp-action="Create"><i class="fas fa-plus-square"></i></a>

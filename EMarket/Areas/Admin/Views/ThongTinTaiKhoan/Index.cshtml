@@ -6,9 +6,6 @@
 
 <h2>Thông tin tài khoản</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -31,29 +28,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaiKhoan.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoVaTen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgaySinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sdt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ThongTinTaiKhoanId">Edit</a> |
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.ThongTinTaiKhoanId">Details</a> |
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ThongTinTaiKhoanId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaiKhoan.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoVaTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sdt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ThongTinTaiKhoanId"><i class="fas fa-edit"></i></a> |
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.ThongTinTaiKhoanId"><i class="fas fa-info"></i></a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ThongTinTaiKhoanId"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<br />
+<a class="btn btn-success float-right" asp-action="Create"><i class="fas fa-plus-square"></i></a>

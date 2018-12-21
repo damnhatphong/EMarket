@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\CustomAttribute\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 

@@ -6,9 +6,7 @@
 
 <h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -28,26 +26,29 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>           
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayDk)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LoaiTaiKhoan)
-            </td>
-            <td>
-                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.TaiKhoanId">Edit</a> |
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.TaiKhoanId">Details</a> |
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.TaiKhoanId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiTaiKhoan)
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.TaiKhoanId"><i class="fas fa-edit"></i></a> |
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.TaiKhoanId"><i class="fas fa-info"></i></a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.TaiKhoanId"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<br />
+<a class="btn btn-success float-right" asp-action="Create"><i class="fas fa-plus-square"></i></a>

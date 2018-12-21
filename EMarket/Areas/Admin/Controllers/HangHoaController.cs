@@ -19,7 +19,7 @@ namespace EMarket.Areas.Admin.Controllers
         public HangHoaController(EMarketContext context)
         {
             _context = context;
-            //if (HttpContext.Session.GetString(""))
+            if (HttpContext.Session.GetString("User") == null)  RedirectToAction("Login");
         }
 
         // GET: Admin/HangHoas
