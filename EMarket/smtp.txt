@@ -460,3 +460,73 @@ C: .
 S: 250 2.0.0 OK 1545416916 i21sm37045162pgm.17 - gsmtp
 C: QUIT
 S: 221 2.0.0 closing connection i21sm37045162pgm.17 - gsmtp
+Connected to smtp://smtp.gmail.com:587/?starttls=when-available
+S: 220 smtp.gmail.com ESMTP b68sm37276422pfg.160 - gsmtp
+C: EHLO [10.37.3.95]
+S: 250-smtp.gmail.com at your service, [113.161.84.110]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+C: EHLO [10.37.3.95]
+S: 250-smtp.gmail.com at your service, [113.161.84.110]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: AUTH PLAIN AGRhbW5oYXRwaG9uZzY3MTk5OABuaGF0cGhvbmc2NzE5OTg=
+S: 235 2.7.0 Accepted
+C: MAIL FROM:<damnhatphong671998@gmail.com>
+C: RCPT TO:<damnhatphong671998@gmail.com>
+S: 250 2.1.0 OK b68sm37276422pfg.160 - gsmtp
+S: 250 2.1.5 OK b68sm37276422pfg.160 - gsmtp
+C: DATA
+S: 354  Go ahead b68sm37276422pfg.160 - gsmtp
+C: From: Emarket-Dukes <damnhatphong671998@gmail.com>
+C: Date: Sat, 22 Dec 2018 08:24:56 +0700
+C: Subject: EmarketInvoice
+C: Message-Id: <GG4WTV4JA6U4.700QB188DDBC2@localhost.localdomain>
+C: To: "Mr(Mrs)" =?utf-8?b?xJDDoG0gTmjhuq10?= Phong
+C: 	<damnhatphong671998@gmail.com>
+C: MIME-Version: 1.0
+C: Content-Type: text/html; charset=utf-8
+C: Content-Id: <5WWDUV4JA6U4.Y91V9DQDTJAQ2@localhost.localdomain>
+C: Content-Transfer-Encoding: quoted-printable
+C: 
+C: <html><body><table style=3D'border: 1px solid black;border-collapse: c=
+C: ollapse; width:100%;'><thead><tr><th style =3D 'border: 1px solid blac=
+C: k;border-collapse: collapse;' >M=C3=A3 h=C3=B3a =C4=91=C6=A1n:</th><th=
+C:  style =3D 'border: 1px solid black;border-collapse: collapse;' >T=C3=AA=
+C: n h=C3=A0ng h=C3=B3a:</th><th style =3D 'border: 1px solid black;borde=
+C: r-collapse: collapse;' >S=E1=BB=91 l=C6=B0=E1=BB=A3ng:</th><th style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;' >T=E1=BB=95ng Ti=
+C: =E1=BB=81n:</th></tr></thead><tbody><tr><td style =3D 'border: 1px sol=
+C: id black;border-collapse: collapse;'>54</td><td style =3D 'border: 1px=
+C:  solid black;border-collapse: collapse;'>IPhone XS</td><td style =3D '=
+C: border: 1px solid black;border-collapse: collapse;'>2</td><td style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;'>1999.8$</td></tr=
+C: ><tr><td style =3D 'border: 1px solid black;border-collapse: collapse;=
+C: '>54</td><td style =3D 'border: 1px solid black;border-collapse: colla=
+C: pse;'>MacBook-Air</td><td style =3D 'border: 1px solid black;border-co=
+C: llapse: collapse;'>1</td><td style =3D 'border: 1px solid black;border=
+C: -collapse: collapse;'>1600$</td></tr><tr><td style =3D 'border: 1px so=
+C: lid black;border-collapse: collapse;'>54</td><td style =3D 'border: 1p=
+C: x solid black;border-collapse: collapse;'>IPad-Pro</td><td style =3D '=
+C: border: 1px solid black;border-collapse: collapse;'>1</td><td style =3D=
+C:  'border: 1px solid black;border-collapse: collapse;'>475$</td></tr></=
+C: tbody></table><tr><td></td><td></td><td style=3D'float:right; margin-r=
+C: ight: 10px;'>T=E1=BB=95ng:</td><td style =3D 'border: 1px solid black;=
+C: border-collapse: collapse;'>4074.8$</td></tr></body></html>
+C: 
+C: .
+S: 250 2.0.0 OK 1545441901 b68sm37276422pfg.160 - gsmtp
+C: QUIT
+S: 221 2.0.0 closing connection b68sm37276422pfg.160 - gsmtp
