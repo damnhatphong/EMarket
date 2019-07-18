@@ -1,10 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Http;
+@using EMarket.Areas.Client.Services;
+
+@inject HelperService helperService
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <title>Electro - HTML Ecommerce Template</title>
@@ -34,9 +37,15 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    @{
+        string segements = $"{this.ViewContext.RouteData.Values["controller"]}/{this.ViewContext.RouteData.Values["action"]}";
+        @(Html.Raw(helperService.InjectMetaInfo(segements)));
+        segements = null;
+    }
 
 </head>
 <body>
+    @RenderSection("PaypalScript", required: false)
     <!-- HEADER -->
     <header>
         <!-- TOP HEADER -->
@@ -157,7 +166,7 @@
     <!-- /SECTION -->
     <!-- FOOTER -->
     @await Component.InvokeAsync("NewArrivals")
-    
+
 
     <footer id="footer">
         <!-- top footer -->
@@ -169,7 +178,7 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="footer">
                             <h3 class="footer-title">Infomation</h3>
-                            <p>The First website was made with ASP.NET CORE 2.0 <strong>(BY ME - Đàm Nhật Phong [DUKES] )</strong></p>
+                            <p>ASP.NET CORE 2.0</p>
                             <ul class="footer-links">
                                 <li><a href="#"><i class="fa fa-map-marker"></i>HCMUP-AnDuongVuong-HCM City</a></li>
                                 <li><a href="#"><i class="fa fa-phone"></i>0903-373-103</a></li>
@@ -242,7 +251,7 @@
     <script src="~/js/main.js"></script>
     <div id="fb-root"></div>
     <script>
-    (function (d, s, id) {
+        (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
@@ -250,5 +259,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+
 </body>
 </html>

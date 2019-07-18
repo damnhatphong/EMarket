@@ -7,6 +7,7 @@ using EMarket.Cryptography;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace EMarket.Areas.Client.Controllers
 {
@@ -15,10 +16,12 @@ namespace EMarket.Areas.Client.Controllers
     {
 
         private readonly EMarketContext _context;
+        private readonly ILogger<LoginController> _logger;
 
-        public LoginController(EMarketContext context)
+        public LoginController(EMarketContext context, ILogger<LoginController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -31,38 +34,46 @@ namespace EMarket.Areas.Client.Controllers
             HttpContext.Session.SetString("User", "");
             return RedirectToAction("Index", "HangHoa");
         }
-
-
-
+        
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel user)
         {
-            var result = _context.TaiKhoan.Where(p => p.UserName == user.Username).FirstOrDefault();
-            if (result != null)
-            {
-                if (result.Password == Encryptor.MD5Hash(user.Password))
-                {
+            string license = ValidateUserInfomation(user);
 
-                    HttpContext.Session.SetString("User", result.UserName);
+            switch (license) {
+                case "passed":
+                    _logger.LogInformation("Logged " + user.Username);
+                    HttpContext.Session.SetString("User", user.Username);
                     return RedirectToAction("Index", "HangHoa");
-                }
-                else
-                {
-                    ViewData["Error"] = "Mật Khẩu Không Chính Xác";
+                case "unknown":
+                    ViewData["Error"] = "Tài khoản không tồn tại";
                     return View("Index");
-                }
+                case "failed":
+                    ViewData["Error"] = "Thông tin đăng nhập Không Chính Xác";
+                    return View("Index");
+                default:
+                    _logger.LogWarning("Unknown condition detected in the login function with license: " + license);
+                    ViewData["Error"] = "Thông tin đăng nhập Không Chính Xác";
+                    return View("Index");
+            }
+        }
+
+        private string ValidateUserInfomation(LoginViewModel user)
+        {
+            var userInDB = _context.TaiKhoan.Where(p => p.UserName == user.Username).FirstOrDefault();
+            if (userInDB != null)
+            {
+                return (userInDB.Password == Encryptor.MD5Hash(user.Password)) ? "passed" : "failed";                
             }
             else
             {
-                ViewData["Error"] = "Tài Khoản Không Tồn Tại";
-                return View("Index");
+                return "unknown";
             }
         }
 
         [HttpGet]
         public IActionResult Register()
         {
-
             return View();
         }
 
@@ -70,27 +81,41 @@ namespace EMarket.Areas.Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([Bind("UserName,Email,Password")] TaiKhoan register, string repassword)
         {
-            var check = _context.TaiKhoan.Where(p => p.UserName == register.UserName).FirstOrDefault();
-            if (check != null) { ViewData["RegisterError"] = "Tài Khoản Đã Tồn Tại"; return View("Register"); }
-            register.LoaiTaiKhoan = true;
-            register.NgayDk = DateTime.Now;
-
-            if (ModelState.IsValid)
+            if (UserIsExisting(register.UserName))
             {
-                if (repassword == register.Password)
-                {
-                    register.Password = Encryptor.MD5Hash(register.Password);
-                    _context.Add(register);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-                else
-                {
-                    ViewData["RegisterError"] = "Mật Khẩu không Khớp";
-                    return View("Register");
-                }
+                ViewData["RegisterError"] = "Tài Khoản Đã Tồn Tại";
+                return View("Register");
             }
-            return View("Index");
+            else
+            {
+
+                register.LoaiTaiKhoan = true;
+                register.NgayDk = DateTime.Now;
+
+                if (ModelState.IsValid)
+                {
+                    if (repassword == register.Password)
+                    {
+                        register.Password = Encryptor.MD5Hash(register.Password);
+                        _context.Add(register);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        ViewData["RegisterError"] = "Thông tin mật khẩu không chính xác";
+                        return View("Register");
+                    }
+                }
+
+                return View("Index");
+            }
+        }
+
+        private bool UserIsExisting(string userName)
+        {
+            var userInDB = _context.TaiKhoan.Where(p => p.UserName == userName).FirstOrDefault();
+            return (userInDB != null) ? true : false;
         }
 
         [HttpGet]

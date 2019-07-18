@@ -62,11 +62,22 @@
                     @using Newtonsoft.Json;
                     <input type="hidden" name="danhsach" value="@JsonConvert.SerializeObject(Model.GioHang)" />
                     <button type="submit" class="primary-btn order-submit">Xác Nhận</button>
+                    <br />
+                    <h4 class="text-center">Thanh toán trực tuyến</h4>
+                    <div id="paypal-button-container"></div>
                 </div>
             </form>
             <!-- /Order Details -->
+            <script>
+                paypal.Buttons().render('#paypal-button-container');
+            </script>
         </div>
         <!-- /row -->
     </div>
     <!-- /container -->
 </div>
+@section PaypalScript{
+    <script 
+            src="https://www.paypal.com/sdk/js?client-id=@ViewData["ClientId"]">
+    </script>
+}

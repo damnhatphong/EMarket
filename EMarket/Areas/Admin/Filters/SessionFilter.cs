@@ -16,6 +16,7 @@ namespace EMarket.Areas.Admin.Filters
         {
             _context = context;
         }
+
         public void OnActionExecuting(ActionExecutingContext context)
         {
             var AdminUser = context.HttpContext.Session.GetString("User");

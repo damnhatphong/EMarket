@@ -9,6 +9,7 @@ using EMarket.Areas.Client.Helpers;
 using EMarket.Areas.Client.Models;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace EMarket.Areas.Client.Controllers
 {
@@ -16,15 +17,18 @@ namespace EMarket.Areas.Client.Controllers
     public class GioHangController : Controller
     {
         private readonly EMarketContext eMarketContext;
+        private readonly ILogger<GioHangController> _logger;
 
-        public GioHangController(EMarketContext context)
+        public GioHangController(EMarketContext context, ILogger<GioHangController> logger)
         {
             eMarketContext = context;
+            _logger = logger;
         }
 
        
         public IActionResult Index()
         {
+            _logger.LogInformation("Truy Cập vào giỏ hàng!!!!!!!!!!!!!!!!!!!!!!");
             return RedirectToAction("Index", "HangHoa");
         }
 

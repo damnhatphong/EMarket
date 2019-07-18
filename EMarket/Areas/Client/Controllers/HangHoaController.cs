@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EMarket.Areas.Admin.Models;
+using Microsoft.Extensions.Logging;
 
 namespace EMarket.Areas.Client.Controllers
 {
@@ -14,16 +15,17 @@ namespace EMarket.Areas.Client.Controllers
     public class HangHoaController : Controller
     {
         private readonly EMarketContext _context;
-
-        public HangHoaController(EMarketContext context)
+        private readonly ILogger<HangHoaController> _logger;
+        public HangHoaController(EMarketContext context, ILogger<HangHoaController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: HangHoa
         public async Task<IActionResult> Index(int? page, int? loai, int? nhacc,string pattern)
         {
-
+            _logger.LogInformation("Truy cập vào Index của trang hàng hóa!!!!!!!!!");
             int pageSize = 6;
             if (page == null) page = 1;
             var eMarketContext = _context.HangHoa.Include(p=>p.Loai).Include(p=>p.NhaCungCap).OrderBy(p=>p.HangHoaId);

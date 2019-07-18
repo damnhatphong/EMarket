@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,17 +8,23 @@ using Microsoft.Extensions.DependencyInjection;
 using EMarket.Areas.Admin.Models;
 using Microsoft.EntityFrameworkCore;
 using EMarket.Areas.Admin.Filters;
+using EMarket.Areas.Client.Services;
+using EMarket.Services.PayPal;
+using Microsoft.Extensions.Logging;
 
 namespace EMarket
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly ILogger _logger;
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            _logger = logger;
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -37,7 +39,16 @@ namespace EMarket
                 options.UseSqlServer(Configuration.GetConnectionString("EMarket"));
             });
             services.AddSession();
-            services.AddScoped<SessionFilter>();           
+            
+            services.AddScoped<SessionFilter>();
+            _logger.LogInformation("Added Session filter to startup services");
+
+            services.AddScoped<HelperService>();
+            _logger.LogInformation("Added Helper to startup services");
+
+            services.Configure<PayPalAuthOptions>(Configuration.GetSection("PayPalPayment"));
+            _logger.LogInformation("Added PayPalAuthorization Options. This can be retrieved via configuration.");
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -50,6 +61,7 @@ namespace EMarket
             }
             else
             {
+                _logger.LogInformation("In Development environment");
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
