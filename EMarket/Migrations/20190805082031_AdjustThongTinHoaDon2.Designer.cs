@@ -4,14 +4,16 @@ using EMarket.Areas.Admin.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EMarket.Migrations
 {
     [DbContext(typeof(EMarketContext))]
-    partial class EMarketContextModelSnapshot : ModelSnapshot
+    [Migration("20190805082031_AdjustThongTinHoaDon2")]
+    partial class AdjustThongTinHoaDon2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

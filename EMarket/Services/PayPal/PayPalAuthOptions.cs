@@ -9,5 +9,7 @@ namespace EMarket.Services.PayPal
     {
         public string PayPalClientID { get; set; }
         public string PayPalSecret { get; set; }
+        public string PayeeEmail { get; set; }
+        public string PayeeId { get; set; }
     }
 }

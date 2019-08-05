@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EMarket.Areas.Admin.Models;
+using EMarket.Areas.Client.Helpers;
 using EMarket.Cryptography;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -43,7 +44,7 @@ namespace EMarket.Areas.Client.Controllers
             switch (license) {
                 case "passed":
                     _logger.LogInformation("Logged " + user.Username);
-                    HttpContext.Session.SetString("User", user.Username);
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "User", user.Username);
                     return RedirectToAction("Index", "HangHoa");
                 case "unknown":
                     ViewData["Error"] = "Tài khoản không tồn tại";

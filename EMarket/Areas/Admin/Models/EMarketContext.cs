@@ -183,8 +183,7 @@ namespace EMarket.Areas.Admin.Models
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.TaiKhoan)
-                    .WithMany(p => p.ThongTinTaiKhoan)
-                    .HasForeignKey(d => d.TaiKhoanId)
+                    .WithOne(p=>p.ThongTinTaiKhoan)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ThongTinTaiKhoan_TaiKhoan");
             });

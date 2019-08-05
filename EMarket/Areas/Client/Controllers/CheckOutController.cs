@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using EMarket.Areas.Admin.Models;
 using EMarket.Areas.Client.Models;
 using EMarket.Services.PayPal;
@@ -42,5 +41,6 @@ namespace EMarket.Areas.Client.Controllers
             ViewBag.ClientId = _payPalOption.PayPalClientID;
             return View(list);
         }
+        
     }
 }

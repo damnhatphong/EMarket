@@ -6,12 +6,6 @@ namespace EMarket.Areas.Admin.Models
 {
     public partial class TaiKhoan
     {
-        public TaiKhoan()
-        {
-            ThongTinTaiKhoan = new HashSet<ThongTinTaiKhoan>();
-        }
-
-
         [Display(Name = "Mã Tài Khoản")]
         [Required]
         public int TaiKhoanId { get; set; }
@@ -32,6 +26,6 @@ namespace EMarket.Areas.Admin.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        public ICollection<ThongTinTaiKhoan> ThongTinTaiKhoan { get; set; }
+        public ThongTinTaiKhoan ThongTinTaiKhoan { get; set; }
     }
 }

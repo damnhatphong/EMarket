@@ -4,14 +4,16 @@ using EMarket.Areas.Admin.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EMarket.Migrations
 {
     [DbContext(typeof(EMarketContext))]
-    partial class EMarketContextModelSnapshot : ModelSnapshot
+    [Migration("20190805080041_AdjustThongTinHoaDon")]
+    partial class AdjustThongTinHoaDon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,8 +247,7 @@ namespace EMarket.Migrations
 
                     b.HasKey("ThongTinTaiKhoanId");
 
-                    b.HasIndex("TaiKhoanId")
-                        .IsUnique();
+                    b.HasIndex("TaiKhoanId");
 
                     b.ToTable("ThongTinTaiKhoan");
                 });
@@ -311,8 +312,8 @@ namespace EMarket.Migrations
             modelBuilder.Entity("EMarket.Areas.Admin.Models.ThongTinTaiKhoan", b =>
                 {
                     b.HasOne("EMarket.Areas.Admin.Models.TaiKhoan", "TaiKhoan")
-                        .WithOne("ThongTinTaiKhoan")
-                        .HasForeignKey("EMarket.Areas.Admin.Models.ThongTinTaiKhoan", "TaiKhoanId")
+                        .WithMany("ThongTinTaiKhoan")
+                        .HasForeignKey("TaiKhoanId")
                         .HasConstraintName("FK_ThongTinTaiKhoan_TaiKhoan");
                 });
 

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using BraintreeHttp;
 using Microsoft.Extensions.Options;
 using PayPal.Core;
-using PayPal.v1.PaymentExperience;
 using PayPal.v1.Payments;
 
 namespace EMarket.Services.PayPal
@@ -15,9 +14,7 @@ namespace EMarket.Services.PayPal
         
         private readonly PayPalAuthOptions _option;
         private SandboxEnvironment _sandbox;
-        private PayPalEnvironment _paypalEnvironment;
         PayPalHttpClient _client;
-
         public PayPalPayment(IOptions<PayPalAuthOptions> option)
         {
             
@@ -26,12 +23,13 @@ namespace EMarket.Services.PayPal
             _client = new PayPalHttpClient(_sandbox);
         }
 
-        public Payment CreatePayment(decimal amount, string returnUrl, string cancelUrl, string intent)
+        public Payment CreatePayment(double total, string returnUrl, string cancelUrl, string intent)
         {
+
             var payment = new Payment()
             {
                 Intent = intent,
-                Transactions = GetTransactionsList(amount),
+                Transactions = GetTransactionsList(total,new List<Item>()),
                 RedirectUrls = new RedirectUrls()
                 {
                     CancelUrl = cancelUrl,
@@ -46,8 +44,28 @@ namespace EMarket.Services.PayPal
             return payment;
         }
 
+        public Payment CreatePayment(double total, string returnUrl, string cancelUrl, string intent,List<Item> items)
+        {
 
-        private List<Transaction> GetTransactionsList(decimal amount)
+            var payment = new Payment()
+            {
+                Intent = intent,
+                Transactions = GetTransactionsList(total, items),
+                RedirectUrls = new RedirectUrls()
+                {
+                    CancelUrl = cancelUrl,
+                    ReturnUrl = returnUrl
+                },
+                Payer = new Payer()
+                {
+                    PaymentMethod = "paypal"
+                }
+            };
+            return payment;
+        }
+
+
+        private List<Transaction> GetTransactionsList(double total, List<Item> items)
         {
             var transactionList = new List<Transaction>();
 
@@ -58,62 +76,54 @@ namespace EMarket.Services.PayPal
                 Amount = new Amount()
                 {
                     Currency = "USD",
-                    Total = amount.ToString(),
+                    Total = total.ToString(),
                     Details = new AmountDetails()
                     {
                         Tax = "0",
                         Shipping = "0",
-                        Subtotal = amount.ToString()
+                        Subtotal = total.ToString()
                     }
                 },
                 ItemList = new ItemList()
                 {
-                    Items = new List<Item>()
-                    {
-                        new Item()
-                        {
-                            Name = "Payment",
-                            Currency = "USD",
-                            Price = amount.ToString(),
-                            Quantity = "1",
-                            Sku = "sku"
-                        }
-                    }
+                    Items = items
                 },
-                Payee = new Payee
-                {
-                    // TODO.. Enter the payee email address here
-                    Email = "",
-
-                    // TODO.. Enter the merchant id here
-                    MerchantId = ""
-                }
             });
-
             return transactionList;
         }
 
-        public async Task<Payment> ExecutePayment(Payment payment)
+        public async Task<string> ExecutePayment(Payment payment)
         {
-            Payment result = new Payment();
+            PaymentCreateRequest request = new PaymentCreateRequest();
+            request.RequestBody(payment);
             try
             {
-                PaymentCreateRequest request = new PaymentCreateRequest();
-                request.RequestBody(payment);           
                 HttpResponse response = await _client.Execute(request);
                 var statusCode = response.StatusCode;
-                result = response.Result<Payment>();
-                return result;
+                Payment result = response.Result<Payment>();
+                var links = result.Links.GetEnumerator();
+                string paypalRedirectUrl = null;
+                while (links.MoveNext())
+                {
+                    LinkDescriptionObject lnk = links.Current;
+                    if (lnk.Rel.ToLower().Trim().Equals("approval_url"))
+                    {
+                        //saving the payapalredirect URL to which user will be redirected for payment  
+                        paypalRedirectUrl = lnk.Href;
+                    }
+                }
+                return paypalRedirectUrl;
             }
             catch (HttpException httpException)
             {
                 var statusCode = httpException.StatusCode;
                 var debugId = httpException.Headers.GetValues("PayPal-Debug-Id").FirstOrDefault();
+                return "fail";
             }
-            return result;
         }
 
-        private string GetRandomInvoiceNumber()
+
+        string GetRandomInvoiceNumber()
         {
             return new Random().Next(999999999).ToString();
         }

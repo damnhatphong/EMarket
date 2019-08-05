@@ -11,6 +11,7 @@ using EMarket.Areas.Admin.Filters;
 using EMarket.Areas.Client.Services;
 using EMarket.Services.PayPal;
 using Microsoft.Extensions.Logging;
+using EMarket.Middlewares;
 
 namespace EMarket
 {
@@ -32,7 +33,7 @@ namespace EMarket
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                //options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDbContext<EMarketContext>(options=> {
@@ -45,6 +46,8 @@ namespace EMarket
 
             services.AddScoped<HelperService>();
             _logger.LogInformation("Added Helper to startup services");
+
+            services.AddSingleton<IPayPalPayment, PayPalPayment>();
 
             services.Configure<PayPalAuthOptions>(Configuration.GetSection("PayPalPayment"));
             _logger.LogInformation("Added PayPalAuthorization Options. This can be retrieved via configuration.");
@@ -70,6 +73,9 @@ namespace EMarket
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
+
+            app.UseHitCounter();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

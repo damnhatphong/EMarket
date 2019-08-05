@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using EMarket.Areas.Admin.Models;
 using EMarket.Areas.Client.Helpers;
 using EMarket.Areas.Client.Models;
-using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using EMarket.Services.PayPal;
+using PayPal.v1.Payments;
 
 namespace EMarket.Areas.Client.Controllers
 {
@@ -18,27 +19,28 @@ namespace EMarket.Areas.Client.Controllers
     {
         private readonly EMarketContext eMarketContext;
         private readonly ILogger<GioHangController> _logger;
+        private readonly IPayPalPayment _payPal;
 
-        public GioHangController(EMarketContext context, ILogger<GioHangController> logger)
+        public GioHangController(EMarketContext context, ILogger<GioHangController> logger,IPayPalPayment payPal)
         {
             eMarketContext = context;
             _logger = logger;
+            _payPal = payPal;
         }
 
-       
+
         public IActionResult Index()
         {
-            _logger.LogInformation("Truy Cập vào giỏ hàng!!!!!!!!!!!!!!!!!!!!!!");
             return RedirectToAction("Index", "HangHoa");
         }
 
-      
+
         public IActionResult Them(int id, int soLuong = 0)
         {
             if (SessionHelper.GetObjectFromJson<List<GioHang>>(HttpContext.Session, "cart") == null)
             {
                 List<GioHang> cart = new List<GioHang>();
-                cart.Add(new GioHang { HangHoa = eMarketContext.HangHoa.Where(p=>p.HangHoaId == id).FirstOrDefault(), SoLuong = soLuong });
+                cart.Add(new GioHang { HangHoa = eMarketContext.HangHoa.Where(p => p.HangHoaId == id).FirstOrDefault(), SoLuong = soLuong });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             else
@@ -47,7 +49,7 @@ namespace EMarket.Areas.Client.Controllers
                 int index = IsExist(id);
                 if (index != -1)
                 {
-                    cart[index].SoLuong+=soLuong;
+                    cart[index].SoLuong += soLuong;
                 }
                 else
                 {
@@ -58,7 +60,7 @@ namespace EMarket.Areas.Client.Controllers
             return RedirectToAction("Index");
         }
 
-       
+
         public IActionResult Xoa(int id)
         {
             List<GioHang> cart = SessionHelper.GetObjectFromJson<List<GioHang>>(HttpContext.Session, "cart");
@@ -82,35 +84,12 @@ namespace EMarket.Areas.Client.Controllers
         }
 
         [HttpPost]
-        public IActionResult ThanhToan(string name,string email,string address,string tel,string danhsach)
+        public IActionResult ThanhToan(string name, string email, string address, string tel)
         {
-            List <GioHang> danhsachhang = JsonConvert.DeserializeObject<List<GioHang>>(danhsach);       
-           
-            HttpContext.Session.SetString("cart", "");
-            string key = HttpContext.Session.GetString("User");
-            var user = eMarketContext.TaiKhoan.Include(p => p.ThongTinTaiKhoan).Where(p => p.UserName == key).FirstOrDefault();
-           
-            HoaDon hoadon = new HoaDon();
-            hoadon.TenKhachHang = name;
-            hoadon.Sdt = tel;
-            hoadon.DiaChi = address;
-            hoadon.Email = user.Email;
-            hoadon.NgayLapHoaDon = DateTime.Now;
-            hoadon.TinhTrang = false;
-            eMarketContext.Add(hoadon);
-            eMarketContext.SaveChanges();
+            List<GioHang> danhsachhang = SessionHelper.GetObjectFromJson<List<GioHang>>(HttpContext.Session, "cart");
 
-            foreach (var item in danhsachhang)
-            {
-                ChiTietHoaDon chitethoadon = new ChiTietHoaDon();
-                chitethoadon.HangHoaId = item.HangHoa.HangHoaId;
-                chitethoadon.SoLuong = item.SoLuong;
-                chitethoadon.TongTien = item.SoLuong * item.HangHoa.Gia;
-                chitethoadon.HoaDonId = hoadon.HoaDonId;
-                eMarketContext.Add(chitethoadon);
-                eMarketContext.SaveChanges();
-
-            }
+            CreateInvoice(danhsachhang, name, email, address, tel);
+            HttpContext.Session.SetString("cart", "");           
 
             foreach (var item in danhsachhang)
             {
@@ -130,12 +109,79 @@ namespace EMarket.Areas.Client.Controllers
                     eMarketContext.SaveChanges();
                 }
             }
-
-
-
+           
             TempData["status"] = "Đặt Hàng Thành Công";
-            return RedirectToAction("Index","HangHoa");
+            return RedirectToAction("Index", "HangHoa");
         }
 
+
+        private void CreateInvoice(List<GioHang> danhsachhang, string name, string email, string address, string tel)
+        {
+            string key = HttpContext.Session.GetString("User").ToString();
+            var user = eMarketContext.TaiKhoan.Include(p => p.ThongTinTaiKhoan).Where(p => p.UserName == key).FirstOrDefault();
+
+            HoaDon hoadon = new HoaDon();
+            hoadon.TenKhachHang = name ?? user.UserName;
+            hoadon.Sdt = tel ?? "";
+            hoadon.DiaChi = address ?? "";
+            hoadon.Email = email ?? "";
+            hoadon.NgayLapHoaDon = DateTime.Now;
+            hoadon.TinhTrang = false;
+
+            eMarketContext.Add(hoadon);
+            eMarketContext.SaveChanges();
+
+            foreach (var item in danhsachhang)
+            {
+                ChiTietHoaDon chitethoadon = new ChiTietHoaDon();
+                chitethoadon.HangHoaId = item.HangHoa.HangHoaId;
+                chitethoadon.SoLuong = item.SoLuong;
+                chitethoadon.TongTien = item.SoLuong * item.HangHoa.Gia;
+                chitethoadon.HoaDonId = hoadon.HoaDonId;
+                eMarketContext.Add(chitethoadon);
+                eMarketContext.SaveChanges();
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> PaypalPayment()
+        {
+            List<GioHang> danhsachhang = SessionHelper.GetObjectFromJson<List<GioHang>>(HttpContext.Session, "cart");
+            List<Item> items = new List<Item>();
+            double total = 0;
+
+            foreach (var x in danhsachhang)
+            {   
+                items.Add(new Item() {
+                    Name = x.HangHoa.TenHangHoa,
+                    Currency = "USD",
+                    Price = x.HangHoa.Gia.ToString(),
+                    Quantity = x.SoLuong.ToString(),
+                    Sku = "sku",
+                    Tax = "0"
+                });
+                total += x.HangHoa.Gia * x.SoLuong;
+            }
+
+            Payment payment = _payPal.CreatePayment(total, @"https://www.google.com.vn/", @"https://www.facebook.com/","sale",items);
+            string paypalRedirectUrl = await _payPal.ExecutePayment(payment);
+            if (paypalRedirectUrl == "fail") {
+                return RedirectToAction("Fail");
+            }
+            return Redirect(paypalRedirectUrl);
+        }
+
+        public IActionResult Success()
+        {
+            //Tạo đơn hàng trong CSDL với trạng thái : Đã thanh toán, phương thức: Paypal
+            return Content("Thanh toán thành công");
+        }
+
+        public IActionResult Fail()
+        {
+            //Tạo đơn hàng trong CSDL với trạng thái : Chưa thanh toán, phương thức: 
+            return Content("Thanh toán thất bại");
+        }
     }
 }

@@ -25,7 +25,6 @@ namespace EMarket.Areas.Client.Controllers
         // GET: HangHoa
         public async Task<IActionResult> Index(int? page, int? loai, int? nhacc,string pattern)
         {
-            _logger.LogInformation("Truy cập vào Index của trang hàng hóa!!!!!!!!!");
             int pageSize = 6;
             if (page == null) page = 1;
             var eMarketContext = _context.HangHoa.Include(p=>p.Loai).Include(p=>p.NhaCungCap).OrderBy(p=>p.HangHoaId);
