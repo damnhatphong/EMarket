@@ -9,6 +9,7 @@
     <div class="container">
         <!-- row -->
         <div class="row">
+
             <form asp-controller="GioHang" asp-action="ThanhToan">
                 <div class="col-md-4">
                     <!-- Billing Details -->
@@ -34,6 +35,7 @@
                 </div>
 
                 <!-- Order Details -->
+
                 <div class="col-md-4 pull-right order-details">
                     <div class="section-title text-center">
                         <h3 class="title">Your Order</h3>
@@ -63,47 +65,17 @@
                     <input type="hidden" name="danhsach" value="@JsonConvert.SerializeObject(Model.GioHang)" />
                     <button type="submit" class="primary-btn order-submit">Xác Nhận</button>
                     <br />
-                    <h4 class="text-center">Thanh toán trực tuyến</h4>
-                    <div id="paypal-button-container"></div>
                 </div>
             </form>
-            <form asp-controller="GioHang" asp-action="PaypalPayment">
-                <button type="submit" class="primary-btn order-submit">Thanh Toán Paypal</button>    
-            </form>
             <!-- /Order Details -->
-
+            <div class="col-md-4 offset-4 float-right">
+                <h4 class="text-right">Thanh toán trực tuyến</h4>
+                <form asp-controller="GioHang" asp-action="PaypalPayment" class="text-right">
+                    <button type="submit" style="background: none; padding:0;"><img src="~/images./checkout-logo-large.png" /></button>
+                </form>
+            </div>
         </div>
         <!-- /row -->
     </div>
     <!-- /container -->
 </div>
-
-@section PaypalScript{
-    <script src="https://www.paypal.com/sdk/js?client-id=@ViewData["ClientId"]">
-    </script>
-}
-
-@section PaypalPayment
-    {
-    <script>
-        paypal.Buttons({
-            createOrder: function (data, actions) {
-                // Set up the transaction
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '0.01'
-                        }
-                    }]
-                });
-            },
-            onApprove: function (data, actions) {
-                // Capture the funds from the transaction
-                return actions.order.capture().then(function (details) {
-                    // Show a success message to your buyer
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                });
-            }
-        }).render('#paypal-button-container');
-    </script>
-}
