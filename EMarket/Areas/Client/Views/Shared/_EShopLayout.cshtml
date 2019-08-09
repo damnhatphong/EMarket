@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Http;
 @using EMarket.Areas.Client.Services;
+@using EMarket.Areas.Client.Helpers;
+@using Newtonsoft.Json;
 
 @inject HelperService helperService
 <!DOCTYPE html>
@@ -65,7 +67,7 @@
                     }
                     else
                     {
-                        <li><a asp-controller="Login" asp-action="Logout"><i class="fa fa-sign-in"></i>@Context.Session.GetString("User") (Logout)</a></li>
+                        <li><a asp-controller="Login" asp-action="Logout"><i class="fa fa-sign-in"></i>@JsonConvert.DeserializeObject(Context.Session.GetString("User"))-(SignOut)</a></li>
                         <li><a asp-controller="Login" asp-action="ChangeInfo"><i class="fa fa-user-o"></i>[ChangeInfo]</a></li>
 
                     }

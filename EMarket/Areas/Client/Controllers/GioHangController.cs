@@ -117,14 +117,14 @@ namespace EMarket.Areas.Client.Controllers
 
         private void CreateInvoice(List<GioHang> danhsachhang, string name, string email, string address, string tel)
         {
-            string key = HttpContext.Session.GetString("User").ToString();
-            var user = eMarketContext.TaiKhoan.Include(p => p.ThongTinTaiKhoan).Where(p => p.UserName == key).FirstOrDefault();
+            string value = SessionHelper.GetObjectFromJson<string>(HttpContext.Session,"User");
+            var user = eMarketContext.TaiKhoan.Include(p => p.ThongTinTaiKhoan).Where(p => p.UserName == value).FirstOrDefault();
 
             HoaDon hoadon = new HoaDon();
             hoadon.TenKhachHang = name ?? user.UserName;
-            hoadon.Sdt = tel ?? "";
-            hoadon.DiaChi = address ?? "";
-            hoadon.Email = email ?? "";
+            hoadon.Sdt = tel ?? user.ThongTinTaiKhoan.Sdt;
+            hoadon.DiaChi = address ?? user.ThongTinTaiKhoan.DiaChi;
+            hoadon.Email = email ?? user.Email;
             hoadon.NgayLapHoaDon = DateTime.Now;
             hoadon.TinhTrang = false;
 

@@ -43,8 +43,9 @@ namespace EMarket.Areas.Client.Controllers
 
             switch (license) {
                 case "passed":
+                    string username = user.Username;
                     _logger.LogInformation("Logged " + user.Username);
-                    SessionHelper.SetObjectAsJson(HttpContext.Session, "User", user.Username);
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "User", username);
                     return RedirectToAction("Index", "HangHoa");
                 case "unknown":
                     ViewData["Error"] = "Tài khoản không tồn tại";
