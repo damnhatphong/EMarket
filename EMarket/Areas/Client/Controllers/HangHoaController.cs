@@ -40,9 +40,10 @@ namespace EMarket.Areas.Client.Controllers
             
         }
         // GET: HangHoa/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [Route("{loai}/{url}")]
+        public async Task<IActionResult> Details(int? id, string loai, string url)
         {
-            
+
             if (id == null)
             {
                 return NotFound();
@@ -62,7 +63,7 @@ namespace EMarket.Areas.Client.Controllers
         }
 
         // GET: HangHoa/Create
-        
+
         public IActionResult Create()
         {
             ViewData["LoaiId"] = new SelectList(_context.Loai, "LoaiId", "TenLoai");
