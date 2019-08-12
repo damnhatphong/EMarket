@@ -23,7 +23,7 @@ namespace EMarket.Areas.Client.Controllers
         }
 
         // GET: HangHoa
-        public async Task<IActionResult> Index(int? page, int? loai, int? nhacc,string pattern)
+        public async Task<IActionResult> Index(int? page, int? loai, int? nhacc,string pattern, string LoaiSeoUrl)
         {
             int pageSize = 6;
             if (page == null) page = 1;

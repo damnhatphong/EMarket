@@ -38,5 +38,6 @@ namespace EMarket.Areas.Admin.Models
         public ICollection<KhoHang> KhoHang { get; set; }
         public ICollection<TopSelling> TopSelling { get; set; }
         public string TenHhSeoUrl => TenHangHoa.ToUrlFriendly();
+        public string TenLoaiSeoUrl => Loai.TenLoai.ToUrlFriendly();
     }
 }
