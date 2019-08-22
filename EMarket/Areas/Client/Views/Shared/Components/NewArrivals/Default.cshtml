@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">@item.Loai.TenLoai</p>
-                                        <h3 class="product-name"><a asp-action="Details" asp-route-id="@item.HangHoaId">@item.TenHangHoa</a></h3>
+                                        <h3 class="product-name"><a asp-action="Details" asp-route-id="@item.HangHoaId" asp-route-loai="@item.TenLoaiSeoUrl" asp-route-url="@item.TenHhSeoUrl">@item.TenHangHoa</a></h3>
                                         <h4 class="product-price">@item.Gia$</h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>

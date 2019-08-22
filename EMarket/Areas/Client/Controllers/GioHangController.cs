@@ -28,6 +28,7 @@ namespace EMarket.Areas.Client.Controllers
             _payPal = payPal;
         }
 
+
         public IActionResult Index()
         {
             return RedirectToAction("Index", "HangHoa");
@@ -39,7 +40,8 @@ namespace EMarket.Areas.Client.Controllers
             if (SessionHelper.GetObjectFromJson<List<GioHang>>(HttpContext.Session, "cart") == null)
             {
                 List<GioHang> cart = new List<GioHang>();
-                cart.Add(new GioHang { HangHoa = eMarketContext.HangHoa.Where(p => p.HangHoaId == id).FirstOrDefault(), SoLuong = soLuong });
+                cart.Add(new GioHang { HangHoa = eMarketContext.HangHoa.Include(h => h.Loai)
+                    .Include(h => h.NhaCungCap).FirstOrDefault(p => p.HangHoaId == id), SoLuong = soLuong });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             else
@@ -52,7 +54,8 @@ namespace EMarket.Areas.Client.Controllers
                 }
                 else
                 {
-                    cart.Add(new GioHang { HangHoa = eMarketContext.HangHoa.Where(p => p.HangHoaId == id).FirstOrDefault(), SoLuong = soLuong });
+                    cart.Add(new GioHang { HangHoa = eMarketContext.HangHoa.Include(h => h.Loai)
+                    .Include(h => h.NhaCungCap).FirstOrDefault(p => p.HangHoaId == id), SoLuong = soLuong });
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
@@ -163,7 +166,7 @@ namespace EMarket.Areas.Client.Controllers
                 total += x.HangHoa.Gia * x.SoLuong;
             }
 
-            Payment payment = _payPal.CreatePayment(total, @"https://www.google.com.vn/", @"https://www.facebook.com/","sale",items);
+            Payment payment = _payPal.CreatePayment(total, @"https://localhost:44336/Client/GioHang/Success", @"https://localhost:44336/Client/GioHang/Fail", "sale",items);
             string paypalRedirectUrl = await _payPal.ExecutePayment(payment);
             if (paypalRedirectUrl == "fail") {
                 return RedirectToAction("Fail");
@@ -174,13 +177,15 @@ namespace EMarket.Areas.Client.Controllers
         public IActionResult Success()
         {
             //Tạo đơn hàng trong CSDL với trạng thái : Đã thanh toán, phương thức: Paypal
-            return Content("Thanh toán thành công");
+            TempData["status"] = "Đã Thanh Toán";
+            return RedirectToAction("Index", "HangHoa");
         }
 
         public IActionResult Fail()
         {
             //Tạo đơn hàng trong CSDL với trạng thái : Chưa thanh toán, phương thức: 
-            return Content("Thanh toán thất bại");
+            TempData["status"] = "Thanh toán đơn hàng thất bại xin vui lòng thử lại";
+            return RedirectToAction("Index", "HangHoa");
         }
     }
 }

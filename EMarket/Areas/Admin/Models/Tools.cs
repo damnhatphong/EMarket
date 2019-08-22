@@ -18,6 +18,7 @@ namespace EMarket.Areas.Admin.Models
             str = Regex.Replace(str, @"[íìỉịĩ]", "i");
             str = Regex.Replace(str, @"[óòỏọõôốồổỗộơớờởợỡ]", "o");
             str = Regex.Replace(str, @"[úùủụũưứừửữự]", "u");
+            str = Regex.Replace(str, @"[đ]", "d");
 
             str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
             str = Regex.Replace(str, @"\s+", "-").Trim();

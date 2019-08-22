@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EMarket.Areas.Admin.Models
 {
+    [JsonObject(IsReference = true)]
     public partial class HangHoa
     {
         public HangHoa()
@@ -38,5 +40,6 @@ namespace EMarket.Areas.Admin.Models
         public ICollection<KhoHang> KhoHang { get; set; }
         public ICollection<TopSelling> TopSelling { get; set; }
         public string TenHhSeoUrl => TenHangHoa.ToUrlFriendly();
+        public string TenLoaiSeoUrl => Loai.TenLoai.ToUrlFriendly();
     }
 }

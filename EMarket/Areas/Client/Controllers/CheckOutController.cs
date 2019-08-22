@@ -25,7 +25,12 @@ namespace EMarket.Areas.Client.Controllers
 
         public IActionResult Index(string danhsach)
         {
-            List<GioHang> danhsachhang = JsonConvert.DeserializeObject<List<GioHang>>(danhsach);            
+            //if (String.IsNullOrEmpty(danhsach))
+            //{
+            //    TempData["status"] = "Không có sản phẩm nào được chọn";
+            //    return RedirectToAction("Index", "HangHoa");
+            //}
+            List<GioHang> danhsachhang = JsonConvert.DeserializeObject<List<GioHang>>(danhsach);
             if (danhsachhang.Count() == 0)
             {
                 TempData["status"] = "Không có sản phẩm nào được chọn";
