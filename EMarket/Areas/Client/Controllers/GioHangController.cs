@@ -40,7 +40,8 @@ namespace EMarket.Areas.Client.Controllers
             if (SessionHelper.GetObjectFromJson<List<GioHang>>(HttpContext.Session, "cart") == null)
             {
                 List<GioHang> cart = new List<GioHang>();
-                cart.Add(new GioHang { HangHoa = eMarketContext.HangHoa.Where(p => p.HangHoaId == id).FirstOrDefault(), SoLuong = soLuong });
+                cart.Add(new GioHang { HangHoa = eMarketContext.HangHoa.Include(h => h.Loai)
+                    .Include(h => h.NhaCungCap).FirstOrDefault(p => p.HangHoaId == id), SoLuong = soLuong });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             else
@@ -53,7 +54,8 @@ namespace EMarket.Areas.Client.Controllers
                 }
                 else
                 {
-                    cart.Add(new GioHang { HangHoa = eMarketContext.HangHoa.Where(p => p.HangHoaId == id).FirstOrDefault(), SoLuong = soLuong });
+                    cart.Add(new GioHang { HangHoa = eMarketContext.HangHoa.Include(h => h.Loai)
+                    .Include(h => h.NhaCungCap).FirstOrDefault(p => p.HangHoaId == id), SoLuong = soLuong });
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
