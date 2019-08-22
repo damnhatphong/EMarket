@@ -25,12 +25,17 @@ namespace EMarket.Areas.Client.Controllers
 
         public IActionResult Index(string danhsach)
         {
-            List<GioHang> danhsachhang = JsonConvert.DeserializeObject<List<GioHang>>(danhsach);            
-            if (danhsachhang.Count() == 0)
+            if (String.IsNullOrEmpty(danhsach))
             {
                 TempData["status"] = "Không có sản phẩm nào được chọn";
                 return RedirectToAction("Index", "HangHoa");
             }
+            List<GioHang> danhsachhang = JsonConvert.DeserializeObject<List<GioHang>>(danhsach);            
+            //if (danhsachhang.Count() == 0)
+            //{
+            //    TempData["status"] = "Không có sản phẩm nào được chọn";
+            //    return RedirectToAction("Index", "HangHoa");
+            //}
             if (HttpContext.Session.GetString("User") == null || HttpContext.Session.GetString("User") == "")
             {
                 TempData["status"] = "Bạn Cần Phải Đăng Nhập";
