@@ -1,0 +1,3 @@
+Paypal Api v.beta 2.0
+mailchimp.net.v3
+mailkit

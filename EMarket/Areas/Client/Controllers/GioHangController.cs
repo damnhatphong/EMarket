@@ -28,7 +28,6 @@ namespace EMarket.Areas.Client.Controllers
             _payPal = payPal;
         }
 
-
         public IActionResult Index()
         {
             return RedirectToAction("Index", "HangHoa");
@@ -57,7 +56,7 @@ namespace EMarket.Areas.Client.Controllers
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
 

@@ -40,7 +40,7 @@ namespace EMarket.Areas.Client.Controllers
             
         }
         // GET: HangHoa/Details/5
-        [Route("{loai}/{url}")]
+        [Route("HangHoa/{loai}/{url}")]
         public async Task<IActionResult> Details(int? id, string loai, string url)
         {
 
