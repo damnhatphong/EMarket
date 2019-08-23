@@ -66,8 +66,6 @@
                 transform: scale(1.1);
                 box-shadow: 0 2px 8px rgba(0, 0, 0, .09), 0 4px 40px rgba(0, 0, 0, .24)
             }
-
-        
         }
     </style>
     <!-- Font Awesome Icon -->
@@ -87,7 +85,15 @@
         @(Html.Raw(helperService.InjectMetaInfo(segements)));
         segements = null;
     }
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146394729-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
+        gtag('config', 'UA-146394729-1');
+    </script>
 </head>
 <body>
 
