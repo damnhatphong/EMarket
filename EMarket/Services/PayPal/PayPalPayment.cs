@@ -76,13 +76,14 @@ namespace EMarket.Services.PayPal
                 Amount = new Amount()
                 {
                     Currency = "USD",
-                    Total = total.ToString(),
+                    Total = total.ToString(),                    
                     Details = new AmountDetails()
                     {
                         Tax = "0",
                         Shipping = "0",
                         Subtotal = total.ToString()
-                    }
+                        
+                    },
                 },
                 ItemList = new ItemList()
                 {
