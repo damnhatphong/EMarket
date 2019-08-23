@@ -177,6 +177,7 @@ namespace EMarket.Areas.Client.Controllers
         public IActionResult Success()
         {
             //Tạo đơn hàng trong CSDL với trạng thái : Đã thanh toán, phương thức: Paypal
+            HttpContext.Session.SetString("cart", "");
             TempData["status"] = "Đã Thanh Toán";
             return RedirectToAction("Index", "HangHoa");
         }
