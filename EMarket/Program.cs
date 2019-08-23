@@ -39,6 +39,7 @@ namespace EMarket
                     logging.ClearProviders();
                     logging.SetMinimumLevel(LogLevel.Trace);
                 })
-                .UseNLog();
+                .UseNLog()
+                .UseEnvironment("Development");
     }
 }
