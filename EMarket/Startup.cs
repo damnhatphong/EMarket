@@ -49,6 +49,8 @@ namespace EMarket
 
             services.AddSingleton<IPayPalPayment, PayPalPayment>();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.Configure<PayPalAuthOptions>(Configuration.GetSection("PayPalPayment"));
             _logger.LogInformation("Added PayPalAuthorization Options. This can be retrieved via configuration.");
 
@@ -57,6 +59,7 @@ namespace EMarket
             _logger.LogInformation("Added Mailchimp Options. This can be retrieved via configuration.");
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
